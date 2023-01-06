@@ -20,5 +20,6 @@ export default {
 .my-runes {
   height: 100vh;
   background-color: black;
+  position: relative;
 }
 </style>

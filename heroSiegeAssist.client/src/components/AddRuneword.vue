@@ -1,7 +1,7 @@
 <template>
   <div class="add-runeword">
-    <button>
-      <p class="text-visible">Add runeword </p><i class="mdi mdi-plus fs-1 text-visible"></i>
+    <button class="d-flex gap-3 align-items-center px-2">
+      <p class="text-visible m-0">Add runeword </p><i class="mdi mdi-plus fs-1 text-visible"></i>
     </button>
   </div>
 </template>
@@ -21,6 +21,10 @@ export default {
 .add-runeword>button {
   background-color: transparent;
   border: none;
+  border-radius: 0.75rem;
+  position: absolute;
+  top: 1%;
+  right: 1%;
 }
 
 .add-runeword>button:hover {
