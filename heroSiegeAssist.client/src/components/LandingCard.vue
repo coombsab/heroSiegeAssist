@@ -1,21 +1,35 @@
 <template>
-  <div class="landing-card text-visible">
+  <div class="landing-card" :style="{ backgroundImage: `url(${background})`}">
     <div class="card-wrapper">
-      <p class="m-auto fs-3">{{title}}</p>
+      <button @click="reRoute()">
+        <p class="m-auto fs-3 text-visible">{{title}}</p>
+      </button>
     </div>
   </div>
 </template>
 
 <script>
+import { useRouter } from "vue-router";
+import Pop from "../utils/Pop";
+
 export default {
   props: {
-    title: { type: String }
+    title: { type: String },
+    background: { type: String }
   },
 
   setup(props) {
-    
+    const router = useRouter();
+
     return {
-      
+      reRoute() {
+        try {
+          router.push({ name: `${props.title}`})
+        }
+        catch(error) {
+          Pop.error(`${props.title} page could not be found.`, `[reRoute > LandingCard.vue] ${error.message}, Msg:`)
+        }
+      }
     }
   }
 }
@@ -24,9 +38,20 @@ export default {
 <style scoped lang="scss">
   .landing-card {
     border-radius: 1rem;
-    height: 18rem;
-    width: 12rem;
+    height: 80vh;
+    width: 90vw;
     background-color: purple;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    // box-shadow: 10px 5px 5px teal;
+    box-shadow: 0px 5px 10px 0px rgba(0,255,255,0.7);
+  }
+
+  .landing-card:hover {
+    transform: translateY(-10px);
+    // box-shadow: inset 0px 5px 10px 5px rgba(0,255,255,0.7);
+
   }
 
   .card-wrapper {
@@ -37,6 +62,19 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
+
+    >button {
+      background-color: transparent;
+      border: none;
+      height: 100%;
+      width: 100%;
+    }
   }
   
+  @media (min-width: 768px) {
+  .landing-card {
+    height: 36rem;
+    width: 24rem;
+  }
+}
 </style>
