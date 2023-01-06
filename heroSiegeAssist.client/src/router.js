@@ -22,6 +22,16 @@ const routes = [
     component: loadPage('RunewordsPage')
   },
   {
+    path: '/runes',
+    name: 'Runes',
+    component: loadPage('RunesPage')
+  },
+  {
+    path: '/myrunes',
+    name: 'MyRunes',
+    component: loadPage('MyRunesPage')
+  },
+  {
     path: '/account',
     name: 'Account',
     component: loadPage('AccountPage'),
