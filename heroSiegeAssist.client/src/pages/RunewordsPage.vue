@@ -3,14 +3,19 @@
     <div class="runewords-container d-flex flex-wrap gap-4 justify-content-center">
       <RunewordCard v-for="r in runewords" :key="r.name" :runeword="r" />
     </div>
-    <AddRuneword />
+    <AddButton :buttonText="'Add Runeword'" :modalId="'addRunewordModal'" />
+    <AddModal :modalId="'addRunewordModal'">
+      <AddRunewordForm />
+    </AddModal>
   </div>
 </template>
 
 <script>
 import { computed } from "@vue/reactivity";
 import { AppState } from "../AppState";
-import AddRuneword from "../components/AddRuneword.vue";
+import AddButton from "../components/AddButton.vue";
+import AddModal from "../components/AddModal.vue";
+import AddRunewordForm from "../components/AddRunewordForm.vue";
 import RunewordCard from "../components/RunewordCard.vue";
 
 export default {
@@ -19,7 +24,7 @@ export default {
           runewords: computed(() => AppState.runewords.sort())
         };
     },
-    components: { AddRuneword, RunewordCard }
+    components: { RunewordCard, AddModal, AddButton, AddRunewordForm }
 }
 </script>
 

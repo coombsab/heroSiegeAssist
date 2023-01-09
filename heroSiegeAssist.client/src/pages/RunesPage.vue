@@ -7,13 +7,19 @@
   <div class="runes d-flex flex-column justify-content-center" v-else>
     <RuneCard v-for="r in runes" :key="r.name" :rune="r" />
   </div>
-  <AddRune />
+  <AddButton :buttonText="'Add Rune'" :modalId="'addRuneModal'" />
+  <AddModal :modalId="'addRuneModal'">
+    <AddRuneForm />
+  </AddModal>
+
 </template>
 
 <script>
 import { computed } from "@vue/reactivity";
 import { AppState } from "../AppState";
-import AddRune from "../components/AddRune.vue";
+import AddButton from "../components/AddButton.vue";
+import AddModal from "../components/AddModal.vue";
+import AddRuneForm from "../components/AddRuneForm.vue";
 import RuneCard from "../components/RuneCard.vue";
 
 export default {
@@ -22,7 +28,7 @@ export default {
       runes: computed(() => AppState.runes.sort())
     };
   },
-  components: { AddRune, RuneCard }
+  components: { RuneCard, AddModal, AddButton, AddRuneForm }
 }
 </script>
 
