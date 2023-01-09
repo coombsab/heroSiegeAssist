@@ -41,8 +41,8 @@ export default {
 <style scoped lang="scss">
 .rune-card {
   border-radius: 1rem;
-  // height: 80vh;
-  // width: 90vw;
+  height: 12rem;
+  width: 8rem;
   background-color: purple;
   background-image: url(../assets/img/HeroSiegeRuneWord.png);
   background-position: center;

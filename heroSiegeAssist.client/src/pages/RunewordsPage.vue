@@ -35,6 +35,7 @@ export default {
       width: 100%;
       padding-top: 5rem;
       padding-bottom: 2.5rem;
+      align-content: flex-start;
     }
   }
 </style>

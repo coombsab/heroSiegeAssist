@@ -1,6 +1,8 @@
 <template>
-  <div class="runes d-flex flex-wrap justify-content-center align-items-center text-visible gap-3" v-if="true">
-    <RuneCard v-for="r in runes" :key="r.name" :rune="r" />
+  <div class="runes" v-if="true">
+    <div class="runes-container d-flex flex-wrap gap-4 justify-content-center">
+      <RuneCard v-for="r in runes" :key="r.name" :rune="r" />
+    </div>
   </div>
   <div class="runes d-flex flex-column justify-content-center" v-else>
     <RuneCard v-for="r in runes" :key="r.name" :rune="r" />
@@ -25,9 +27,18 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.runes {
-  height: 100vh;
-  background-color: black;
-  position: relative;
-}
+  .runes {
+    height: 100vh;
+    background-color: black;
+    position: relative;
+    
+    >.runes-container {
+      overflow-y: auto;
+      height: 100%;
+      width: 100%;
+      padding-top: 5rem;
+      padding-bottom: 2.5rem;
+      align-content: flex-start;
+    }
+  }
 </style>

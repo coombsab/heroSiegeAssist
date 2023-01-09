@@ -12,9 +12,9 @@ export const AppState = reactive({
         { name: "hel", effect: "0.75% all stats", tier: "nightmare", dropRate: "1/32500", img: "/src/assets/img/runes/hel.webp" },
         { name: "vex", effect: "2% energy", tier: "nightmare", dropRate: "1/4500", img: "/src/assets/img/runes/vex.webp" },
         { name: "zod", effect: "250 health/hit", tier: "high", dropRate: "1/24500", img: "/src/assets/img/runes/zod.webp" },
-        { name: "aux", effect: "2.50% wind damage", tier: "hell", dropRate: "1/4500", img: "/src/assets/img/runes/aux.webp" },
+        { name: "aux", effect: "2.50% wind damage", tier: "hell", dropRate: "1/4500", img: "/src/assets/img/aux.webp" },
         { name: "ox", effect: "2% strength", tier: "nightmare", dropRate: "1/4250", img: "/src/assets/img/runes/ox.webp" },
-        { name: "xeo", effect: "50 health/sec", tier: "normal", dropRate: "1/400", img: "/src/assets/img/runes/xeo.webp" },
+        { name: "xeo", effect: "50 health/sec", tier: "normal", dropRate: "1/400", img: "https://static.wikia.nocookie.net/herosiege/images/4/49/Xeo_rune_spr.png" },
       ],
       effects: [
         "4,946 Damage",
@@ -55,7 +55,7 @@ export const AppState = reactive({
       name: "Scholar",
       runes: [
         { name: "wei", effect: "750 max mana", tier: "normal", dropRate: "1/500", img: "/src/assets/img/runes/wei.webp" },
-        { name: "xeo", effect: "50 health/sec", tier: "normal", dropRate: "1/400", img: "/src/assets/img/runes/xeo.webp" },
+        { name: "xeo", effect: "50 health/sec", tier: "normal", dropRate: "1/400", img: "https://static.wikia.nocookie.net/herosiege/images/4/49/Xeo_rune_spr.png" },
         { name: "ye", effect: "50 mana/sec", tier: "normal", dropRate: "1/450", img: "/src/assets/img/runes/ye.webp" },
       ],
       effects: [
@@ -73,9 +73,9 @@ export const AppState = reactive({
     }
   ],
   runes: [
-    { name: "aux", effect: "2.50% wind damage", tier: "hell", dropRate: "1/4500", img: "/src/assets/img/runes/aux.webp" },
+    { name: "aux", effect: "2.50% wind damage", tier: "hell", dropRate: "1/4500", img: "/src/assets/img/aux.webp" },
     { name: "ox", effect: "2% strength", tier: "nightmare", dropRate: "1/4250", img: "/src/assets/img/runes/ox.webp" },
-    { name: "xeo", effect: "50 health/sec", tier: "normal", dropRate: "1/400", img: "/src/assets/img/runes/xeo.webp" },
+    { name: "xeo", effect: "50 health/sec", tier: "normal", dropRate: "1/400", img: "https://static.wikia.nocookie.net/herosiege/images/4/49/Xeo_rune_spr.png" },
     { name: "hel", effect: "0.75% all stats", tier: "nightmare", dropRate: "1/32500", img: "/src/assets/img/runes/hel.webp" },
     { name: "vex", effect: "2% energy", tier: "nightmare", dropRate: "1/4500", img: "/src/assets/img/runes/vex.webp" },
     { name: "zod", effect: "250 health/hit", tier: "high", dropRate: "1/24500", img: "/src/assets/img/runes/zod.webp" },
@@ -87,7 +87,7 @@ export const AppState = reactive({
     { name: "wei", effect: "750 max mana", tier: "normal", dropRate: "1/500", img: "/src/assets/img/runes/wei.webp" },
   ],
   myRunes: [
-    { name: "xeo", effect: "50 health/sec", tier: "normal", dropRate: "1/400", img: "/src/assets/img/runes/xeo.webp", quantity: 2 },
+    { name: "xeo", effect: "50 health/sec", tier: "normal", dropRate: "1/400", img: "https://static.wikia.nocookie.net/herosiege/images/4/49/Xeo_rune_spr.png", quantity: 2 },
     { name: "ox", effect: "2% strength", tier: "nightmare", dropRate: "1/4250", img: "/src/assets/img/runes/ox.webp", quantity: 5 },
   ]
 })

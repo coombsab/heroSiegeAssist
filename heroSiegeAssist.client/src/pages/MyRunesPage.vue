@@ -1,6 +1,8 @@
 <template>
-  <div class="my-runes d-flex justify-content-center align-items-center gap-3">
-    <RuneCard v-for="r in myRunes" :key="r.name" :rune="r" />
+  <div class="my-runes">
+    <div class="my-runes-container d-flex flex-wrap gap-4 justify-content-center">
+      <RuneCard v-for="r in myRunes" :key="r.name" :rune="r" />
+    </div>
 
     <AddMyRunes />
   </div>
@@ -23,9 +25,18 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.my-runes {
-  height: 100vh;
-  background-color: black;
-  position: relative;
-}
+  .my-runes {
+    height: 100vh;
+    background-color: black;
+    position: relative;
+    
+    >.my-runes-container {
+      overflow-y: auto;
+      height: 100%;
+      width: 100%;
+      padding-top: 5rem;
+      padding-bottom: 2.5rem;
+      align-content: flex-start;
+    }
+  }
 </style>

@@ -38,8 +38,8 @@ export default {
 <style scoped lang="scss">
 .landing-card {
   border-radius: 1rem;
-  height: 80vh;
-  width: 90vw;
+  height: 25vh;
+  width: 35vw;
   background-color: purple;
   background-position: center;
   background-size: cover;
@@ -74,6 +74,13 @@ export default {
 }
 
 @media (min-width: 768px) {
+  .landing-card {
+    height: 28rem;
+    width: 16rem;
+  }
+}
+
+@media (min-width: 1440px) {
   .landing-card {
     height: 36rem;
     width: 24rem;
