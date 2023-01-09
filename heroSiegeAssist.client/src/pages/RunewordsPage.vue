@@ -1,6 +1,6 @@
 <template>
-  <div class="runewords d-flex justify-content-center align-items-center text-visible">
-    <div class="runewords-container d-flex gap-4">
+  <div class="runewords">
+    <div class="runewords-container d-flex flex-wrap gap-4 justify-content-center">
       <RunewordCard v-for="r in runewords" :key="r.name" :runeword="r" />
     </div>
     <AddRuneword />
@@ -28,5 +28,13 @@ export default {
     height: 100vh;
     background-color: black;
     position: relative;
+    
+    >.runewords-container {
+      overflow-y: auto;
+      height: 100%;
+      width: 100%;
+      padding-top: 5rem;
+      padding-bottom: 2.5rem;
+    }
   }
 </style>

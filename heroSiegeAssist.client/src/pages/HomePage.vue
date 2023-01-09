@@ -37,6 +37,7 @@ export default {
   background-color: rgba(0, 0, 0, 0.75);
   height: 100vh;
   width: 100vw;
+  overflow-y: auto;
 }
 
 .card-holder {

@@ -18,16 +18,21 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.add-my-runes {
+  position: absolute;
+  top: 1%;
+  right: 1%;
+  backdrop-filter: blur(2px);
+}
+
 .add-my-runes>button {
   background-color: transparent;
   border: none;
   border-radius: 0.75rem;
-  position: absolute;
-  top: 1%;
-  right: 1%;
 }
 
 .add-my-runes>button:hover {
-  box-shadow: inset 0px 5px 10px 0px rgba(0,255,255,0.7);
+  filter: drop-shadow(0.5px 0.5px 5px rgba(0,255,255,0.25));
+  // box-shadow: inset 0px 5px 10px 0px rgba(0,255,255,0.7);
 }
 </style>
