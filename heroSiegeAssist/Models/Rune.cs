@@ -11,4 +11,7 @@ public class Rune : IRepoItem
   public string Tier { get; set; }
   public string DropRate { get; set; }
   public string Img { get; set; }
+  
+  public Runeword[] PossibleRunewords { get; set; }
+
 }
