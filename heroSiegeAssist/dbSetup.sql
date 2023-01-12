@@ -59,14 +59,25 @@ Update
 
 CREATE TABLE
     IF NOT EXISTS runewordabilities (
+        id INT NOT NULL AUTO_INCREMENT primary key COMMENT ' primary key ',
+        createdAt DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT ' Time Created ',
+        updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT ' Last
+Update
+    ',
+        runewordId VARCHAR(255) NOT NULL,
+        abilityId VARCHAR(255) NOT NULL,
+        FOREIGN KEY (runewordId) REFERENCES runewords(name) ON DELETE CASCADE,
+        FOREIGN KEY (abilityId) REFERENCES abilities(name) ON DELETE CASCADE
+    ) default charset utf8;
+
+CREATE TABLE
+    IF NOT EXISTS abilities (
         name VARCHAR(255) NOT NULL primary key COMMENT ' primary key ',
         createdAt DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT ' Time Created ',
         updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT ' Last
 Update
     ',
-        description MEDIUMTEXT NOT NULL,
-        runewordId VARCHAR(255) NOT NULL,
-        FOREIGN KEY (runewordId) REFERENCES runewords(name) ON DELETE CASCADE
+        description MEDIUMTEXT NOT NULL
     ) default charset utf8;
 
 CREATE TABLE

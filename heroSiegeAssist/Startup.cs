@@ -45,6 +45,9 @@ public class Startup
 
     services.AddTransient<EffectsRepository>();
     services.AddTransient<EffectsService>();
+
+    services.AddTransient<AbilitiesRepository>();
+    services.AddTransient<AbilitiesService>();
   }
 
   private void ConfigureCors(IServiceCollection services)
