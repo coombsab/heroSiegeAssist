@@ -1,6 +1,7 @@
 namespace heroSiegeAssist.Services;
 
-public class RunesService {
+public class RunesService
+{
   private readonly RunesRepository _runesRepository;
   private readonly RunewordsService _runewordsService;
 
@@ -10,25 +11,30 @@ public class RunesService {
     _runewordsService = runewordsService;
   }
 
-  public List<Rune> GetRunes() {
+  public List<Rune> GetRunes()
+  {
     List<Rune> runes = _runesRepository.GetRunes();
-    runes.ForEach(rune => {
+    runes.ForEach(rune =>
+    {
       List<Runeword> runewords = _runewordsService.GetRunewordsByRune(rune);
       rune.PossibleRunewords = runewords;
     });
     return runes;
   }
 
-  public Rune GetRuneByName(string name) {
+  public Rune GetRuneByName(string name)
+  {
     Rune rune = _runesRepository.GetRuneByName(name);
-    if (rune == null) {
+    if (rune == null)
+    {
       throw new Exception("Could not this rune: " + name);
     }
 
     return rune;
   }
 
-  public Rune AddRune(Rune runeData) {
+  public Rune AddRune(Rune runeData)
+  {
     _runesRepository.AddRune(runeData);
 
     Rune rune = this.GetRuneByName(runeData.Name);

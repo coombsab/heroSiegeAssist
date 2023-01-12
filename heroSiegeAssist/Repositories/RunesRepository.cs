@@ -41,5 +41,4 @@ public class RunesRepository {
 
     string name = _db.ExecuteScalar<string>(sql, runeData);
   }
-
 }

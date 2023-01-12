@@ -33,9 +33,11 @@ public class RunewordsRepository
   public List<Runeword> GetRunewordsByRune(Rune rune)
   {
     string sql = @"
-      SELECT *
-      FROM runewords
-      WHERE runewords.rune1 = @Name OR runewords.rune2 = @Name OR runewords.rune3 = @Name OR runewords.rune4 = @Name OR runewords.rune5 = @Name OR runewords.rune6 = @Name;
+      SELECT rw.name
+      FROM runewords rw
+      RIGHT JOIN runerunewords rrw
+      ON rrw.runewordId = rw.name
+      WHERE rrw.runeId = @Name;
     ";
 
     return _db.Query<Runeword>(sql, rune).ToList();
@@ -45,14 +47,27 @@ public class RunewordsRepository
   {
     string sql = @"
       INSERT INTO runewords (
-        name, itemSlot, itemType, rune1, rune2, rune3, rune4, rune5, rune6
+        name, itemSlot, itemType
       )
       VALUES (
-        @Name, @ItemSlot, @ItemType, @Rune1, @Rune2, @Rune3, @Rune4, @Rune5, @Rune6
+        @Name, @ItemSlot, @ItemType
       );
       SELECT LAST_INSERT_ID();
     ";
 
     string runewordName = _db.ExecuteScalar<string>(sql, runewordData);
+  }
+
+  public List<Rune> GetRunesByRunewordName(string name)
+  {
+    string sql = @"
+      SELECT r.*
+      FROM runes r
+      RIGHT JOIN runerunewords rrw
+      ON rrw.runeId = r.name
+      WHERE rrw.runewordId = @name;
+    ";
+
+    return _db.Query<Rune>(sql, new { name }).ToList();
   }
 }
