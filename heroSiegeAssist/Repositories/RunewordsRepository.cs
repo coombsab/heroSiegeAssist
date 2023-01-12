@@ -94,4 +94,17 @@ public class RunewordsRepository
 
     return _db.Query<Ability>(sql, new { name }).ToList();
   }
+
+  public List<Item> GetItemsByRunewordName(string name)
+  {
+    string sql = @"
+      SELECT i.*
+      FROM items i
+      RIGHT JOIN runeworditems rwi
+      ON rwi.itemId = i.name
+      WHERE rwi.runewordId = @name;
+    ";
+
+    return _db.Query<Item>(sql, new { name }).ToList();
+  }
 }

@@ -7,13 +7,15 @@ public class RunewordsController : ControllerBase {
   private readonly RuneRunewordsService _runeRunewordsService;
   private readonly EffectsService _effectsService;
   private readonly AbilitiesService _abilitiesService;
+  private readonly ItemsService _itemsService;
 
-  public RunewordsController(RunewordsService runewordsService, RuneRunewordsService runeRunewordsService, EffectsService effectsService, AbilitiesService abilitiesService)
+  public RunewordsController(RunewordsService runewordsService, RuneRunewordsService runeRunewordsService, EffectsService effectsService, AbilitiesService abilitiesService, ItemsService itemsService)
   {
     _runewordsService = runewordsService;
     _runeRunewordsService = runeRunewordsService;
     _effectsService = effectsService;
     _abilitiesService = abilitiesService;
+    _itemsService = itemsService;
   }
 
   [HttpGet]
@@ -65,6 +67,17 @@ public class RunewordsController : ControllerBase {
   //   try {
   //     RunewordAbility runewordAbility = _abilitiesService.AddAbilityToRuneword(runewordAbilityData);
   //     return Ok(runewordAbility);
+  //   }
+  //   catch(Exception e) {
+  //     return BadRequest(e.Message);
+  //   }
+  // }
+
+  // [HttpPost("Items")]
+  // public ActionResult<RunewordItem> AddItemToRuneword([FromBody] RunewordItem runewordItemData) {
+  //   try {
+  //     RunewordItem runewordItem = _itemsService.AddItemToRuneword(runewordItemData);
+  //     return Ok(runewordItem);
   //   }
   //   catch(Exception e) {
   //     return BadRequest(e.Message);

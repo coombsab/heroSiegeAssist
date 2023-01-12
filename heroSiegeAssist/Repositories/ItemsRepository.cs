@@ -40,4 +40,30 @@ public class ItemsRepository {
 
     return _db.ExecuteScalar<string>(sql, itemData);
   }
+
+  public RunewordItem GetRunewordItemById(int runewordItemId)
+  {
+    string sql = @"
+      SELECT *
+      FROM runeworditems
+      WHERE runeworditems.id = @runewordItemId;
+    ";
+
+    return _db.QueryFirstOrDefault<RunewordItem>(sql, new { runewordItemId });
+  }
+
+  public int AddItemToRuneword(RunewordItem runewordItemData)
+  {
+    string sql = @"
+      INSERT INTO runeworditems (
+        itemId, runewordId
+      )
+      VALUES (
+        @ItemId, @RunewordId
+      );
+      SELECT LAST_INSERT_ID();
+    ";
+
+    return _db.ExecuteScalar<int>(sql, runewordItemData);
+  }
 }

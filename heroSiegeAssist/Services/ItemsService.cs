@@ -28,4 +28,23 @@ public class ItemsService {
 
     return item;
   }
+
+  public RunewordItem GetRunewordItemById(int runewordItemId) {
+    RunewordItem runewordItem = _itemsRepository.GetRunewordItemById(runewordItemId);
+
+    if (runewordItem == null) 
+    {
+      throw new Exception("Could not find a runeword item by id " + runewordItemId);
+    }
+
+    return runewordItem;
+  }
+
+  public RunewordItem AddItemToRuneword(RunewordItem runewordItemData)
+  {
+    int runewordItemId = _itemsRepository.AddItemToRuneword(runewordItemData);
+    RunewordItem runewordItem = this.GetRunewordItemById(runewordItemId);
+
+    return runewordItem;
+  }
 }
