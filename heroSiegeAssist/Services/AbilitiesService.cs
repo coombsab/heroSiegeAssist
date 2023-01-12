@@ -28,4 +28,11 @@ public class AbilitiesService {
     Ability ability = this.GetAbilityByName(abilityData.Name);
     return ability;
   }
+
+  public RunewordAbility AddAbilityToRuneword(RunewordAbility runewordAbilityData)
+  {
+    runewordAbilityData.Id = _abilitiesRepository.AddAbilityToRuneword(runewordAbilityData);
+    
+    return runewordAbilityData;
+  }
 }

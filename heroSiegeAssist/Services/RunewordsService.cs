@@ -3,11 +3,15 @@ namespace heroSiegeAssist.Services;
 public class RunewordsService {
   private readonly RunewordsRepository _runewordsRepository;
   private readonly RuneRunewordsService _runeRunewordsService;
+  private readonly EffectsService _effectsService;
+  private readonly AbilitiesService _abilitiesService;
 
-  public RunewordsService(RunewordsRepository runewordsRepository, RuneRunewordsService runeRunewordsService)
+  public RunewordsService(RunewordsRepository runewordsRepository, RuneRunewordsService runeRunewordsService, EffectsService effectsService, AbilitiesService abilitiesService)
   {
     _runewordsRepository = runewordsRepository;
     _runeRunewordsService = runeRunewordsService;
+    _effectsService = effectsService;
+    _abilitiesService = abilitiesService;
   }
 
   public List<Runeword> GetRunewords() {
@@ -15,6 +19,9 @@ public class RunewordsService {
     runewords.ForEach(runeword => {
       List<Rune> runes = this.GetRunesByRunewordName(runeword.Name);
       runeword.Runes = runes;
+
+      List<Ability> abilities = this.GetAbilitiesByRunewordName(runeword.Name);
+      runeword.Abilities = abilities;
     });
 
     return runewords;
@@ -29,6 +36,9 @@ public class RunewordsService {
     List<Rune> runes = this.GetRunesByRunewordName(runeword.Name);
     runeword.Runes = runes;
 
+    List<Ability> abilities = this.GetAbilitiesByRunewordName(runeword.Name);
+    runeword.Abilities = abilities;
+
     return runeword;
   }
 
@@ -41,6 +51,9 @@ public class RunewordsService {
     runewordData.Runes.ForEach(rune => {
       _runeRunewordsService.AddRuneToRuneword(new RuneRuneword(rune.Name, runewordData.Name));
     });
+    runewordData.Abilities.ForEach(ability => {
+      _abilitiesService.AddAbilityToRuneword(new RunewordAbility(ability.Name, runewordData.Name));
+    });
 
     Runeword runeword = this.GetRunewordByName(runewordData.Name);
     return runeword;
@@ -49,5 +62,13 @@ public class RunewordsService {
   public List<Rune> GetRunesByRunewordName(string name)
   {
     return _runewordsRepository.GetRunesByRunewordName(name);
+  }
+
+  public List<RunewordEffect> GetEffectsByRunewordName(string name) {
+    return _runewordsRepository.GetEffectsByRunewordName(name);
+  }
+
+  public List<Ability> GetAbilitiesByRunewordName(string name) {
+    return _runewordsRepository.GetAbilitiesByRunewordName(name);
   }
 }

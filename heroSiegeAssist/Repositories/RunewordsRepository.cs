@@ -70,4 +70,22 @@ public class RunewordsRepository
 
     return _db.Query<Rune>(sql, new { name }).ToList();
   }
+
+  public List<RunewordEffect> GetEffectsByRunewordName(string name)
+  {
+    throw new NotImplementedException();
+  }
+
+  public List<Ability> GetAbilitiesByRunewordName(string name)
+  {
+    string sql = @"
+      SELECT a.*
+      FROM abilities a
+      RIGHT JOIN runewordabilities rwa
+      ON rwa.abilityId = a.name
+      WHERE rwa.runewordId = @name;
+    ";
+
+    return _db.Query<Ability>(sql, new { name }).ToList();
+  }
 }

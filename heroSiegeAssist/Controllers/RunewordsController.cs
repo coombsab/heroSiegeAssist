@@ -5,11 +5,15 @@ namespace heroSiegeAssist.Controllers;
 public class RunewordsController : ControllerBase {
   private readonly RunewordsService _runewordsService;
   private readonly RuneRunewordsService _runeRunewordsService;
+  private readonly EffectsService _effectsService;
+  private readonly AbilitiesService _abilitiesService;
 
-  public RunewordsController(RunewordsService runewordsService, RuneRunewordsService runeRunewordsService)
+  public RunewordsController(RunewordsService runewordsService, RuneRunewordsService runeRunewordsService, EffectsService effectsService, AbilitiesService abilitiesService)
   {
     _runewordsService = runewordsService;
     _runeRunewordsService = runeRunewordsService;
+    _effectsService = effectsService;
+    _abilitiesService = abilitiesService;
   }
 
   [HttpGet]
@@ -39,6 +43,28 @@ public class RunewordsController : ControllerBase {
   //   try {
   //     RuneRuneword runeRuneword = _runeRunewordsService.AddRuneToRuneword(runeRunewordData);
   //     return Ok(runeRuneword);
+  //   }
+  //   catch(Exception e) {
+  //     return BadRequest(e.Message);
+  //   }
+  // }
+
+  [HttpPost("Effects")]
+  public ActionResult<RunewordEffect> AddEffectToRuneword([FromBody] RunewordEffect runewordEffectData) {
+    try {
+      RunewordEffect runewordEffect = _effectsService.AddEffectToRuneword(runewordEffectData);
+      return Ok(runewordEffect);
+    }
+    catch(Exception e) {
+      return BadRequest(e.Message);
+    }
+  }
+
+  // [HttpPost("Abilities")]
+  // public ActionResult<RunewordAbility> AddAbilityToRuneword([FromBody] RunewordAbility runewordAbilityData) {
+  //   try {
+  //     RunewordAbility runewordAbility = _abilitiesService.AddAbilityToRuneword(runewordAbilityData);
+  //     return Ok(runewordAbility);
   //   }
   //   catch(Exception e) {
   //     return BadRequest(e.Message);

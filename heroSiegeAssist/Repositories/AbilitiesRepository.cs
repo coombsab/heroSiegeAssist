@@ -39,4 +39,19 @@ public class AbilitiesRepository {
 
     string abilityName = _db.ExecuteScalar<string>(sql, abilityData);
   }
+
+  public int AddAbilityToRuneword(RunewordAbility runewordAbilityData)
+  {
+    string sql = @"
+      INSERT INTO runewordabilities (
+        runewordId, abilityId
+      )
+      VALUES (
+        @RunewordId, @AbilityId
+      );
+      SELECT LAST_INSERT_ID();
+    ";
+
+    return _db.ExecuteScalar<int>(sql, runewordAbilityData);
+  }
 }

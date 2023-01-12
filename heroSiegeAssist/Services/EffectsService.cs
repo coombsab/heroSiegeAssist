@@ -29,4 +29,9 @@ public class EffectsService {
 
     return effectText;
   }
+
+  public RunewordEffect AddEffectToRuneword(RunewordEffect runewordEffectData)
+  {
+    throw new NotImplementedException();
+  }
 }
