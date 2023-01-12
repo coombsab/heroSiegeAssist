@@ -34,14 +34,14 @@ public class RunewordsController : ControllerBase {
     }
   }
 
-  [HttpPost("Runes")]
-  public ActionResult<RuneRuneword> AddRuneToRuneword([FromBody] RuneRuneword runeRunewordData) {
-    try {
-      RuneRuneword runeRuneword = _runeRunewordsService.AddRuneToRuneword(runeRunewordData);
-      return Ok(runeRuneword);
-    }
-    catch(Exception e) {
-      return BadRequest(e.Message);
-    }
-  }
+  // [HttpPost("Runes")]
+  // public ActionResult<RuneRuneword> AddRuneToRuneword([FromBody] RuneRuneword runeRunewordData) {
+  //   try {
+  //     RuneRuneword runeRuneword = _runeRunewordsService.AddRuneToRuneword(runeRunewordData);
+  //     return Ok(runeRuneword);
+  //   }
+  //   catch(Exception e) {
+  //     return BadRequest(e.Message);
+  //   }
+  // }
 }

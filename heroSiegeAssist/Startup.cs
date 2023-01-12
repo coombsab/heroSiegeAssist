@@ -42,6 +42,9 @@ public class Startup
 
     services.AddTransient<RuneRunewordsRepository>();
     services.AddTransient<RuneRunewordsService>();
+
+    services.AddTransient<EffectsRepository>();
+    services.AddTransient<EffectsService>();
   }
 
   private void ConfigureCors(IServiceCollection services)
