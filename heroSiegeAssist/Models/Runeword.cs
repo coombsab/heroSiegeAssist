@@ -11,7 +11,7 @@ public class Runeword : IRepoItem
   public string ItemType { get; set; }
 
   public List<Rune> Runes { get; set; }
-  public List<string> Effects { get; set; }
+  public List<RunewordEffect> Effects { get; set; }
   public List<string> Items { get; set; }
   public List<Ability> Abilities { get; set; }
 }

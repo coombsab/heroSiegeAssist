@@ -30,8 +30,20 @@ public class EffectsService {
     return effectText;
   }
 
+  public RunewordEffect GetRunewordEffectById(int runewordEffectId) {
+    RunewordEffect runewordEffect = _effectsRepository.GetRunewordEffectById(runewordEffectId);
+    if (runewordEffect == null) {
+      throw new Exception("Could not find runeword effect by id " + runewordEffectId);
+    }
+
+    return runewordEffect;
+  }
+
   public RunewordEffect AddEffectToRuneword(RunewordEffect runewordEffectData)
   {
-    throw new NotImplementedException();
+    int runewordEffectId = _effectsRepository.AddEffectToRuneword(runewordEffectData);
+    RunewordEffect runewordEffect = this.GetRunewordEffectById(runewordEffectId);
+
+    return runewordEffect;
   }
 }

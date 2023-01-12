@@ -20,6 +20,9 @@ public class RunewordsService {
       List<Rune> runes = this.GetRunesByRunewordName(runeword.Name);
       runeword.Runes = runes;
 
+      List<RunewordEffect> runewordEffects = this.GetEffectsByRunewordName(runeword.Name);
+      runeword.Effects = runewordEffects;
+
       List<Ability> abilities = this.GetAbilitiesByRunewordName(runeword.Name);
       runeword.Abilities = abilities;
     });
@@ -36,6 +39,9 @@ public class RunewordsService {
     List<Rune> runes = this.GetRunesByRunewordName(runeword.Name);
     runeword.Runes = runes;
 
+    List<RunewordEffect> runewordEffects = this.GetEffectsByRunewordName(runeword.Name);
+    runeword.Effects = runewordEffects;
+
     List<Ability> abilities = this.GetAbilitiesByRunewordName(runeword.Name);
     runeword.Abilities = abilities;
 
@@ -50,6 +56,9 @@ public class RunewordsService {
     _runewordsRepository.AddRuneword(runewordData);
     runewordData.Runes.ForEach(rune => {
       _runeRunewordsService.AddRuneToRuneword(new RuneRuneword(rune.Name, runewordData.Name));
+    });
+    runewordData.Effects.ForEach(effect => {
+      _effectsService.AddEffectToRuneword(new RunewordEffect(effect.Name, runewordData.Name));
     });
     runewordData.Abilities.ForEach(ability => {
       _abilitiesService.AddAbilityToRuneword(new RunewordAbility(ability.Name, runewordData.Name));

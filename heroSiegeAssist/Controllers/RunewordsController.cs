@@ -49,16 +49,16 @@ public class RunewordsController : ControllerBase {
   //   }
   // }
 
-  [HttpPost("Effects")]
-  public ActionResult<RunewordEffect> AddEffectToRuneword([FromBody] RunewordEffect runewordEffectData) {
-    try {
-      RunewordEffect runewordEffect = _effectsService.AddEffectToRuneword(runewordEffectData);
-      return Ok(runewordEffect);
-    }
-    catch(Exception e) {
-      return BadRequest(e.Message);
-    }
-  }
+  // [HttpPost("Effects")]
+  // public ActionResult<RunewordEffect> AddEffectToRuneword([FromBody] RunewordEffect runewordEffectData) {
+  //   try {
+  //     RunewordEffect runewordEffect = _effectsService.AddEffectToRuneword(runewordEffectData);
+  //     return Ok(runewordEffect);
+  //   }
+  //   catch(Exception e) {
+  //     return BadRequest(e.Message);
+  //   }
+  // }
 
   // [HttpPost("Abilities")]
   // public ActionResult<RunewordAbility> AddAbilityToRuneword([FromBody] RunewordAbility runewordAbilityData) {

@@ -73,7 +73,13 @@ public class RunewordsRepository
 
   public List<RunewordEffect> GetEffectsByRunewordName(string name)
   {
-    throw new NotImplementedException();
+    string sql = @"
+      SELECT *
+      FROM runewordeffects
+      WHERE runewordeffects.runewordId = @name;
+    ";
+
+    return _db.Query<RunewordEffect>(sql, new { name }).ToList();
   }
 
   public List<Ability> GetAbilitiesByRunewordName(string name)

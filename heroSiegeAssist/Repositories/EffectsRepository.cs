@@ -40,4 +40,29 @@ public class EffectsRepository {
 
     string effectTextId = _db.ExecuteScalar<string>(sql, effectTextData);
   }
+
+  public RunewordEffect GetRunewordEffectById(int runewordEffectId)
+  {
+    string sql = @"
+      SELECT *
+      FROM runewordeffects
+      WHERE runewordeffects.id = @runewordEffectId;
+    ";
+
+    return _db.QueryFirstOrDefault<RunewordEffect>(sql, new { runewordEffectId });
+  }
+
+  public int AddEffectToRuneword(RunewordEffect runewordEffectData)
+  {
+    string sql = @"
+      INSERT INTO runewordeffects (
+        name, runewordId
+      )
+      VALUES (
+        @Name, @RunewordId
+      );
+      SELECT LAST_INSERT_ID();
+    ";
+    return _db.ExecuteScalar<int>(sql, runewordEffectData);
+  }
 }
