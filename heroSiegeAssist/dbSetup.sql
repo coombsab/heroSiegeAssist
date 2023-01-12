@@ -81,6 +81,29 @@ Update
     ) default charset utf8;
 
 CREATE TABLE
+    IF NOT EXISTS items (
+        name VARCHAR(255) NOT NULL primary key COMMENT ' primary key ',
+        createdAt DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT ' Time Created ',
+        updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT ' Last
+Update
+    ',
+        itemSlot VARCHAR(255),
+        itemType VARCHAR(255)
+    ) default charset utf8;
+
+CREATE TABLE
+    IF NOT EXISTS runeworditems (
+        id INT NOT NULL AUTO_INCREMENT primary key COMMENT ' primary key ',
+        createdAt DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT ' Time Created ',
+        updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT ' Last
+Update ',
+        itemId VARCHAR(255) NOT NULL,
+        runewordId VARCHAR(255) NOT NULL,
+        FOREIGN KEY (itemId) REFERENCES items(name) ON DELETE CASCADE,
+        FOREIGN KEY (runewordId) REFERENCES runewords(name) ON DELETE CASCADE
+    ) default charset utf8;
+
+CREATE TABLE
     IF NOT EXISTS runewordeffects (
         id INT NOT NULL AUTO_INCREMENT primary key COMMENT ' primary key ',
         createdAt DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT ' Time Created ',

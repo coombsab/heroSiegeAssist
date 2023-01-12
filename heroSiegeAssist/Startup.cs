@@ -48,6 +48,9 @@ public class Startup
 
     services.AddTransient<AbilitiesRepository>();
     services.AddTransient<AbilitiesService>();
+
+    services.AddTransient<ItemsRepository>();
+    services.AddTransient<ItemsService>();
   }
 
   private void ConfigureCors(IServiceCollection services)
