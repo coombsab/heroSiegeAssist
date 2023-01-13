@@ -55,4 +55,45 @@ public class AccountController : ControllerBase
       return BadRequest(e.Message);
     }
   }
+
+  [HttpPut("runes/{runeId}")]
+  [Authorize]
+  public async Task<ActionResult<MyRune>> EditMyRune([FromBody] MyRune myRuneData, int runeId) {
+    try {
+      Account userInfo = await _auth0Provider.GetUserInfoAsync<Account>(HttpContext);
+      myRuneData.Id = runeId;
+      MyRune rune = _runesService.EditMyRune(myRuneData, userInfo.Id);
+      return Ok(rune);
+    }
+    catch(Exception e) {
+      return BadRequest(e.Message);
+    }
+  }
+
+  [HttpDelete("runes/{runeId}")]
+  [Authorize]
+  public async Task<ActionResult<MyRune>> DeleteMyRune(int runeId) {
+    try {
+      Account userInfo = await _auth0Provider.GetUserInfoAsync<Account>(HttpContext);
+      MyRune rune = _runesService.DeleteMyRune(runeId, userInfo.Id);
+      return Ok(rune);
+    }
+    catch(Exception e) {
+      return BadRequest(e.Message);
+    }
+  }
+
+  [HttpDelete("runes")]
+  [Authorize]
+  public async Task<ActionResult<string>> DeleteMyRunes() {
+    try {
+      Account userInfo = await _auth0Provider.GetUserInfoAsync<Account>(HttpContext);
+      string message = _runesService.DeleteMyRunes(userInfo.Id);
+      return Ok(message);
+    }
+    catch(Exception e) {
+      return BadRequest(e.Message);
+    }
+  }
+ 
 }

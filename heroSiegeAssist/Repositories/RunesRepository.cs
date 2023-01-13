@@ -54,15 +54,15 @@ public class RunesRepository
     return _db.QueryFirstOrDefault<Rune>(sql, new { name });
   }
 
-  public MyRune GetMyRuneByName(string name)
+  public MyRune GetMyRuneById(int runeId)
   {
     string sql = @"
       SELECT *
       FROM possessedrunes
-      WHERE name = @name;
+      WHERE id = @runeId;
     ";
 
-    return _db.QueryFirstOrDefault<MyRune>(sql, new { name });
+    return _db.QueryFirstOrDefault<MyRune>(sql, new { runeId });
   }
 
   public void AddRune(Rune runeData)
@@ -81,7 +81,7 @@ public class RunesRepository
   }
 
 
-  public void AddToMyRunes(MyRune myRuneData)
+  public int AddToMyRunes(MyRune myRuneData)
   {
     string sql = @"
       INSERT INTO possessedrunes (
@@ -93,6 +93,65 @@ public class RunesRepository
       SELECT LAST_INSERT_ID();
     ";
 
-    string name = _db.ExecuteScalar<string>(sql, myRuneData);
+    int runeId = _db.ExecuteScalar<int>(sql, myRuneData);
+    return runeId;
+  }
+
+  public void EditMyRune(MyRune myRuneData)
+  {
+    string sql = @"
+      UPDATE possessedrunes
+      SET
+        quantity = @Quantity
+      WHERE id = @Id
+      LIMIT 1;
+    ";
+    int rows = _db.Execute(sql, myRuneData);
+    if (rows < 1)
+    {
+      throw new Exception("Changes to my runes were not saved.");
+    }
+
+    if (rows > 1)
+    {
+      throw new Exception("Something went wrong with editing your rune.  Please contact your DBA.");
+    }
+  }
+
+  public void DeleteMyRune(int runeId)
+  {
+    string sql = @"
+      DELETE FROM possessedrunes
+      WHERE id = @runeId
+      LIMIT 1;
+    ";
+
+    int rows = _db.Execute(sql, new { runeId });
+    if (rows < 1)
+    {
+      throw new Exception("Changes to my runes were not saved.");
+    }
+
+    if (rows > 1)
+    {
+      throw new Exception("Something went wrong with deleting your rune.  Please contact your DBA.");
+    }
+
+  }
+
+  public string DeleteMyRunes(string accountId)
+  {
+    string sql = @"
+      DELETE FROM possessedrunes
+      WHERE accountId = @accountId;
+    ";
+
+    int rows = _db.Execute(sql, new { accountId });
+    if (rows < 1)
+    {
+      throw new Exception("Changes to my runes were not saved.");
+    }
+
+    return "Successfully cleared your runes";
   }
 }

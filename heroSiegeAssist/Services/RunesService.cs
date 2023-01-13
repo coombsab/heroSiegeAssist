@@ -55,12 +55,12 @@ public class RunesService
     return rune;
   }
 
-  public MyRune GetMyRuneByName(string name)
+  public MyRune GetMyRuneById(int runeId)
   {
-    MyRune rune = _runesRepository.GetMyRuneByName(name);
+    MyRune rune = _runesRepository.GetMyRuneById(runeId);
     if (rune == null)
     {
-      throw new Exception("Could not find my rune: " + name);
+      throw new Exception("Could not find my rune: " + runeId);
     }
 
     return rune;
@@ -79,13 +79,47 @@ public class RunesService
   public MyRune AddToMyRunes(MyRune myRuneData, string accountId)
   {
     myRuneData.AccountId = accountId;
-    _runesRepository.AddToMyRunes(myRuneData);
+    myRuneData.Id = _runesRepository.AddToMyRunes(myRuneData);
 
-    MyRune rune = this.GetMyRuneByName(myRuneData.Name);
+    MyRune rune = this.GetMyRuneById(myRuneData.Id);
     List<Runeword> runewords = _runewordsService.GetRunewordsByRune((Rune)myRuneData);
     rune.PossibleRunewords = runewords;
 
     return rune;
   }
 
+  public MyRune EditMyRune(MyRune myRuneData, string accountId)
+  {
+    myRuneData.AccountId = accountId;
+    MyRune rune = this.GetMyRuneById(myRuneData.Id);
+    
+    _runesRepository.EditMyRune(myRuneData);
+
+    if (myRuneData.Quantity > 0) {
+      rune.UpdatedAt = DateTime.Now;
+      rune.Quantity = myRuneData.Quantity;
+    }
+
+    return rune;
+  }
+
+  public MyRune DeleteMyRune(int runeId, string accountId)
+  {
+    MyRune rune = this.GetMyRuneById(runeId);
+
+    if (rune.AccountId != accountId) {
+      throw new Exception("You cannot delete runes that do not belong to you.");
+    }
+
+    _runesRepository.DeleteMyRune(runeId);
+
+    return rune;
+  }
+
+  public string DeleteMyRunes(string accountId)
+  {
+    string message = _runesRepository.DeleteMyRunes(accountId);
+
+    return message;
+  }
 }

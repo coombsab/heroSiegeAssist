@@ -50,7 +50,8 @@ Update
 
 CREATE TABLE
     IF NOT EXISTS possessedrunes (
-        name VARCHAR(255) NOT NULL primary key COMMENT ' primary key ',
+        id INT NOT NULL AUTO_INCREMENT primary key COMMENT ' primary key ',
+        name VARCHAR(255) NOT NULL,
         createdAt DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT ' Time Created ',
         updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT ' Last
 Update
@@ -63,6 +64,9 @@ Update
         accountId VARCHAR(255) NOT NULL,
         FOREIGN KEY (accountId) REFERENCES accounts(id) ON DELETE CASCADE
     ) default charset utf8;
+
+CREATE UNIQUE INDEX rune_account
+ON possessedrunes(name,accountId);
 
 CREATE TABLE
     IF NOT EXISTS effectstext (
