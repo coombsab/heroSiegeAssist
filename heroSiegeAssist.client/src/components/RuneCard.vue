@@ -1,14 +1,18 @@
 <template>
   <div class="rune-card" v-if="true">
     <div class="card-wrapper d-flex flex-column p-3 text-center text-visible">
-      <div class="d-flex gap-1 align-items-center">
-        <img :src="rune.img" :alt="rune.name">
-        <p class="fs-5" :title="rune.effect">{{ rune.name }}</p>
-        <p v-if="rune.quantity">({{ rune.quantity }})</p>
+      <div class="d-flex flex-column align-items-center">
+        <div class="d-flex gap-1 align-items-center">
+          <img :src="rune.img" :alt="rune.name">
+          <p class="fs-5" :title="rune.effect">{{ rune.name }}</p>
+          <p v-if="rune.quantity">({{ rune.quantity }})</p>
+        </div>
+        <img :src="'/src/assets/img/' + rune.tier + '.png'" :alt="rune.tier" class="rune-tier">
       </div>
       <div class="flex-grow-1 d-flex justify-content-center align-items-center">
         <p>{{ rune.effect }}</p>
       </div>
+      <div class="drop-rate">{{ convertDroprate() }}</div>
     </div>
   </div>
   <div class="d-flex flex-wrap gap-2 text-visible" v-else>
@@ -32,7 +36,11 @@ export default {
   setup(props) {
 
     return {
-
+      convertDroprate() {
+        let leftNum = props.rune.dropRate[0]
+        let rightNum = props.rune.dropRate.substring(2)
+        return (Math.round(((leftNum/rightNum) * 100) * 10000) / 10000) + '%'
+      }
     }
   }
 }
@@ -68,6 +76,7 @@ export default {
   background-color: rgba(0, 0, 0, 0.75);
   display: flex;
   align-items: center;
+  position: relative;
 }
 
 img {
@@ -82,6 +91,23 @@ img {
 
 p {
   margin: 0;
+}
+
+.rune-tier {
+  // font-size: 10px;
+  // color: rgb(0,185,185);
+  height: 20px;
+  width: 20px;
+  filter: drop-shadow(0px 0px 5px rgba(255, 0, 0, 0.9));
+}
+
+.drop-rate {
+  position: absolute;
+  bottom: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 10px;
+  color: rgb(0,185,185);
 }
 
 @media (min-width: 768px) {
