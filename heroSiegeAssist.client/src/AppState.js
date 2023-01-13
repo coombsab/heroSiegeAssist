@@ -89,5 +89,6 @@ export const AppState = reactive({
   myRunes: [
     { name: "xeo", effect: "50 health/sec", tier: "normal", dropRate: "1/400", img: "/src/assets/img/runes/xeo.webp", quantity: 2 },
     { name: "ox", effect: "2% strength", tier: "nightmare", dropRate: "1/4250", img: "/src/assets/img/runes/ox.webp", quantity: 5 },
-  ]
+  ],
+  effectsText: []
 })

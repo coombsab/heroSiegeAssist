@@ -13,10 +13,9 @@ export default {
     modalId: { type: String }
   },
 
-  setup() {
+  setup(props) {
 
     return {
-
     }
   }
 }
