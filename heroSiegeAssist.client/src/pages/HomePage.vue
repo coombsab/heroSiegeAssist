@@ -5,6 +5,7 @@
         <LandingCard :title="'Runewords'" :background="'https://steamuserimages-a.akamaihd.net/ugc/1702909686225947976/2354D9E2F7263F61043C01B62B1E5FC143416604/'" />
         <LandingCard :title="'Runes'" :background="'https://i.pinimg.com/564x/50/bb/86/50bb86315bc0c3771eefc7e97983e582.jpg'" />
         <LandingCard :title="'MyRunes'" :background="'https://preview.redd.it/spell-rune-glyph-circle-generator-v0-s3jpu4n9ysy91.png?width=771&format=png&auto=webp&s=acfe2b1458af39d7f4af08d38c5aba96fc2b2879'" />
+        <LandingCard :title="'Misc'" :background="'https://www.fg-a.com/wallpapers/1-circuit-red-1280.jpg'" />
       </div>
     </div>
   </div>

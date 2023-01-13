@@ -32,6 +32,11 @@ const routes = [
     component: loadPage('MyRunesPage')
   },
   {
+    path: '/miscellaneous',
+    name: 'Misc',
+    component: loadPage('MiscPage')
+  },
+  {
     path: '/account',
     name: 'Account',
     component: loadPage('AccountPage'),

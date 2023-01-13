@@ -1,6 +1,6 @@
 <template>
-  <span class="navbar-text">
-    <button class="btn selectable text-success lighten-30 text-uppercase my-2 my-lg-0" @click="login"
+  <div class="login">
+    <button class="btn selectable text-success lighten-30 text-uppercase my-2 my-lg-0 text-visible" @click="login"
       v-if="!user.isAuthenticated">
       Login
     </button>
@@ -27,7 +27,7 @@
         </div>
       </div>
     </div>
-  </span>
+  </div>
 </template>
 
 <script>
@@ -51,4 +51,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.login {
+  position: absolute;
+  top: 1%;
+  left: 1%;
+  z-index: 1;
+}
 </style>

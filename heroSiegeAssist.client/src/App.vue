@@ -1,8 +1,9 @@
 <template>
-  <header>
+  <!-- <header>
     <Navbar />
-  </header>
+  </header> -->
   <main>
+    <Login />
     <router-view />
   </main>
    <!-- <footer class="bg-dark text-light">
@@ -36,5 +37,9 @@ footer {
   display: grid;
   place-content: center;
   height: 32px;
+}
+
+main {
+  position: relative;
 }
 </style>
