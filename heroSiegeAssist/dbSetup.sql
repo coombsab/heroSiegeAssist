@@ -43,6 +43,22 @@ Update
         tier VARCHAR(255),
         dropRate VARCHAR(255),
         img MEDIUMTEXT,
+        quantity INT NOT NULL,
+        accountId VARCHAR(255) NOT NULL,
+        FOREIGN KEY (accountId) REFERENCES accounts(id) ON DELETE CASCADE
+    ) default charset utf8;
+
+CREATE TABLE
+    IF NOT EXISTS possessedrunes (
+        name VARCHAR(255) NOT NULL primary key COMMENT ' primary key ',
+        createdAt DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT ' Time Created ',
+        updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT ' Last
+Update
+    ',
+        effect VARCHAR(255),
+        tier VARCHAR(255),
+        dropRate VARCHAR(255),
+        img MEDIUMTEXT,
         quantity INT NOT NULL DEFAULT 0,
         accountId VARCHAR(255) NOT NULL,
         FOREIGN KEY (accountId) REFERENCES accounts(id) ON DELETE CASCADE
@@ -143,3 +159,9 @@ SELECT rw.name
 FROM runewords rw
     RIGHT JOIN runerunewords rrw ON rrw.runewordId = rw.name
 WHERE rrw.runeId = "qi";
+
+SELECT DISTINCT acc.*
+FROM possessedrunes pr
+JOIN accounts acc
+ON acc.id = pr.accountId
+;
