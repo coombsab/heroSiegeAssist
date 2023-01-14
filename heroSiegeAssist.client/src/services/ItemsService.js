@@ -11,6 +11,10 @@ class ItemsService {
   addItemsToRunewordSubmission(items) {
     AppState.tempItems = [...new Set([...AppState.tempItems, ...items])]
   }
+
+  removeItemFromRunewordSubmission(item) {
+    AppState.tempItems = AppState.tempItems.filter(i => i !== item)
+  }
 }
 
 export const itemsService = new ItemsService()

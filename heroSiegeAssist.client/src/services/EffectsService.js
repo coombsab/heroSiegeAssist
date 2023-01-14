@@ -13,6 +13,10 @@ class EffectsService {
     let effects = [effect]
     AppState.tempEffects = [...new Set([...AppState.tempEffects, ...effects])]
   }
+
+  removeEffectFromRunewordSubmission(effect) {
+    AppState.tempEffects = AppState.tempEffects.filter(e => e !== effect)
+  }
 }
 
 export const effectsService = new EffectsService()

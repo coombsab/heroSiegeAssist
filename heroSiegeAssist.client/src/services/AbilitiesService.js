@@ -10,9 +10,12 @@ class AbilitiesService {
   }
 
   addAbilityToRunewordSubmission(ability) {
-    console.log("ability", ability)
     let abilities = [ability.name]
     AppState.tempAbilities = [...new Set([...AppState.tempAbilities, ...abilities])]
+  }
+
+  removeAbilityFromRunewordSubmission(ability) {
+    AppState.tempAbilities = AppState.tempAbilities.filter(a => a !== ability)
   }
 }
 

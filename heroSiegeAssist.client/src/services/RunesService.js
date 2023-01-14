@@ -20,6 +20,10 @@ class RunesService {
       AppState.tempRunes = [...new Set([...AppState.tempRunes, ...runes])]
     }
   }
+
+  removeRuneFromRunewordSubmission(rune) {
+    AppState.tempRunes = AppState.tempRunes.filter(r => r !== rune)
+  }
 }
 
 export const runesService = new RunesService()
