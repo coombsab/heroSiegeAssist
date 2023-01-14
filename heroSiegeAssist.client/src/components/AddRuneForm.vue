@@ -17,7 +17,7 @@
           <label for="floatingInputRuneEffect" class="text-secondary text-lighten-3">Effect Value</label>
         </div>
         <div class="form-floating mb-3 flex-grow-1">
-          <select class="form-select bg-dark text-secondary text-lighten-3" id="floatingSelectEffectText" v-model="effectEditable.text" required>
+          <select class="form-select bg-dark text-secondary text-lighten-3" id="floatingSelectRuneEffectText" v-model="effectEditable.text" required>
             <option v-for="e in effectsText" :key="e.name" :value="e.name">{{ e.name }}</option>
           </select>
           <label for="floatingSelectEffectText" class="text-secondary text-lighten-3">Effect Text</label>

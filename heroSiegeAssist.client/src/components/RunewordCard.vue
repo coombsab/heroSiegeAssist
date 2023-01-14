@@ -10,7 +10,7 @@
       </div>
       <p class="fs-3 text-visible text-center">{{ runeword.name }}</p>
       <div class="effects">
-        <p class="m-0 text-center" v-for="e in runeword.effects" :key="runeword.name + '-' + e">{{ e }}</p>
+        <p class="m-0 text-center" v-for="e in runeword.effects" :key="e.id">{{ e.name }}</p>
       </div>
     </div>
   </div>
