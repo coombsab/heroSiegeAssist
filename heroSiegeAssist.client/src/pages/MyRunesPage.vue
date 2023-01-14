@@ -14,16 +14,32 @@
 
 <script>
 import { computed } from "@vue/reactivity";
+import { onMounted } from "vue";
 import { AppState } from "../AppState";
 import AddButton from "../components/AddButton.vue";
 import AddModal from "../components/AddModal.vue";
 import AddMyRunesForm from "../components/AddMyRunesForm.vue";
 import RuneCard from "../components/RuneCard.vue";
+import { accountService } from "../services/AccountService";
+import Pop from "../utils/Pop";
 
 export default {
   setup() {
+    async function getMyRunes() {
+      try {
+        await accountService.getMyRunes()
+      }
+      catch(error) {
+        Pop.error(error.message, "[getMyRunes > MyRunesPage]")
+      }
+    }
+
+    onMounted(() => {
+      getMyRunes()
+    })
+
     return {
-      myRunes: computed(() => AppState.myRunes.sort())
+      myRunes: computed(() => AppState.myRunes.sort((a, b) => a.name.localeCompare(b.name)))
     };
   },
   components: { RuneCard, AddModal, AddButton, AddMyRunesForm }

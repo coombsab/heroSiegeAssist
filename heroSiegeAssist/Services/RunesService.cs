@@ -24,7 +24,13 @@ public class RunesService
 
   public List<MyRune> GetRunesByAccountId(string accountId)
   {
-    return _runesRepository.GetRunesByAccountId(accountId);
+    List<MyRune> runes = _runesRepository.GetRunesByAccountId(accountId);
+    runes.ForEach(rune => {
+      List<Runeword> runewords = _runewordsService.GetRunewordsByRune((Rune) rune);
+      rune.PossibleRunewords = runewords;
+    });
+
+    return runes;
   }
 
   public List<MyRune> GetRunesForAccounts(Accounts accounts)
@@ -33,6 +39,11 @@ public class RunesService
     accounts.AccountIds.ForEach(accountId =>
     {
       runes = runes.Concat(_runesRepository.GetRunesByAccountId(accountId)).ToList();
+    });
+
+    runes.ForEach(rune => {
+      List<Runeword> runewords = _runewordsService.GetRunewordsByRune((Rune) rune);
+      rune.PossibleRunewords = runewords;
     });
 
     return runes;

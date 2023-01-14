@@ -1,28 +1,38 @@
 <template>
-  <div class="rune-card" v-if="true">
-    <div class="card-wrapper d-flex flex-column p-3 text-center text-visible">
-      <div class="d-flex flex-column align-items-center">
-        <div class="d-flex gap-1 align-items-center">
-          <img :src="rune.img" :alt="rune.name">
-          <p class="fs-5" :title="rune.effect">{{ rune.name }}</p>
-          <p v-if="rune.quantity">({{ rune.quantity }})</p>
+  <div class="rune-card" :class="rune.possibleRunewords?.length === 0 || ! rune.possibleRunewords ? 'empty' : ''">
+    <div class="rune-card-inner">
+      <div class="rune-card-front">
+        <div class="card-wrapper d-flex flex-column p-3 text-center text-visible">
+          <div class="d-flex flex-column align-items-center">
+            <div class="d-flex gap-1 align-items-center">
+              <img :src="rune.img" :alt="rune.name">
+              <p class="fs-5" :title="rune.effect">{{ rune.name }}</p>
+              <p v-if="rune.quantity">({{ rune.quantity }})</p>
+            </div>
+            <img :src="'/src/assets/img/' + rune.tier + '.png'" :alt="rune.tier" class="rune-tier">
+          </div>
+          <div class="flex-grow-1 d-flex justify-content-center align-items-center">
+            <p>{{ rune.effect }}</p>
+          </div>
+          <div class="drop-rate">{{ convertDroprate() }}</div>
+          <div class="flip-icon" v-if="rune.possibleRunewords?.length > 0"><i class="mdi mdi-orbit-variant"></i></div>
         </div>
-        <img :src="'/src/assets/img/' + rune.tier + '.png'" :alt="rune.tier" class="rune-tier">
       </div>
-      <div class="flex-grow-1 d-flex justify-content-center align-items-center">
-        <p>{{ rune.effect }}</p>
+      <div class="rune-card-back">
+        <div class="card-wrapper d-flex flex-column p-3 text-center text-visible">
+          <div class="d-flex flex-column align-items-center">
+            <div class="d-flex gap-1 align-items-center">
+              <img :src="rune.img" :alt="rune.name">
+              <p class="fs-5" :title="rune.effect">{{ rune.name }}</p>
+              <p v-if="rune.quantity">({{ rune.quantity }})</p>
+            </div>
+            <img :src="'/src/assets/img/' + rune.tier + '.png'" :alt="rune.tier" class="rune-tier">
+          </div>
+          <div class="possible-runewords d-flex flex-column justify-content-center">
+            <p class="m-0" v-for="r in rune.possibleRunewords" :key="r.name">{{ r.name }}</p>
+          </div>
+        </div>
       </div>
-      <div class="drop-rate">{{ convertDroprate() }}</div>
-    </div>
-  </div>
-  <div class="d-flex flex-wrap gap-2 text-visible" v-else>
-    <div class="d-flex gap-1 rune-title ps-1 py-1">
-      <img :src="rune.img" :alt="rune.name">
-      <p>{{ rune.name }}</p>
-    </div>
-    <div class="d-flex gap-2 py-1">
-      <p>{{ rune.effect }}</p>
-      <p>({{ rune.tier }}, {{ rune.dropRate }})</p>
     </div>
   </div>
 </template>
@@ -39,7 +49,7 @@ export default {
       convertDroprate() {
         let leftNum = props.rune.dropRate[0]
         let rightNum = props.rune.dropRate.substring(2)
-        return (Math.round(((leftNum/rightNum) * 100) * 10000) / 10000) + '%'
+        return (Math.round(((leftNum / rightNum) * 100) * 10000) / 10000) + '%'
       }
     }
   }
@@ -47,10 +57,46 @@ export default {
 </script>
 
 <style scoped lang="scss">
+/* The flip card container - set the width and height to whatever you want. We have added the border property to demonstrate that the flip itself goes out of the box on hover (remove perspective if you don't want the 3D effect */
 .rune-card {
-  border-radius: 1rem;
+  background-color: transparent;
   height: 12rem;
   width: 8rem;
+  // border: 1px solid #f1f1f1;
+  perspective: 1000px;
+  /* Remove this if you don't want the 3D effect */
+}
+
+/* This container is needed to position the front and back side */
+.rune-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+/* Do an horizontal flip when you move the mouse over the flip box container */
+.rune-card:not(.empty):hover .rune-card-inner {
+  transform: rotateY(180deg);
+}
+
+/* Position the front and back side */
+.rune-card-front,
+.rune-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  /* Safari */
+  backface-visibility: hidden;
+}
+
+/* Style the back side */
+
+.rune-card-front {
+  border-radius: 1rem;
   background-color: purple;
   background-image: url(../assets/img/HeroSiegeRuneWord.png);
   background-position: center;
@@ -59,14 +105,16 @@ export default {
   // box-shadow: 10px 5px 5px teal;
   // box-shadow: 0px 5px 10px 0px rgba(0, 255, 255, 0.7);
   // box-shadow: 0.5px 0.5px 10px 0px rgba(0,255,255,0.25), -0.5px -0.5px 10px 0px rgba(0,255,255,0.25);
-
 }
 
-.rune-card:hover {
-  // transform: translateY(-10px);
-  // box-shadow: inset 0px 5px 10px 5px rgba(0,255,255,0.7);
-  // box-shadow: 0.5px 0.5px 10px 0px rgba(0,255,255,0.25), -0.5px -0.5px 10px 0px rgba(0,255,255,0.25);
-
+.rune-card-back {
+  border-radius: 1rem;
+  background-color: purple;
+  background-image: url(../assets/img/HeroSiegeRuneWord.png);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  transform: rotateY(180deg);
 }
 
 .card-wrapper {
@@ -107,7 +155,23 @@ p {
   left: 50%;
   transform: translateX(-50%);
   font-size: 10px;
-  color: rgb(0,185,185);
+  color: rgb(0, 185, 185);
+}
+
+.flip-icon {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  color: rgb(105, 1, 105);
+  // filter: drop-shadow(0px 0px 1px rgba(105, 1, 105, 0.75));
+  animation: beat .25s infinite alternate;
+	transform-origin: center;
+}
+
+.possible-runewords {
+  height: 100%;
+  max-height: 100%;
+  overflow-y: auto;
 }
 
 @media (min-width: 768px) {
@@ -115,5 +179,9 @@ p {
     height: 12rem;
     width: 8rem;
   }
+}
+
+@keyframes beat{
+	to { transform: scale(1.2); }
 }
 </style>

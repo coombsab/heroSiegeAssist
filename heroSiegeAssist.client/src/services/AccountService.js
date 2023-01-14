@@ -1,4 +1,5 @@
 import { AppState } from '../AppState'
+import { MyRune } from "../models/MyRune"
 import { logger } from '../utils/Logger'
 import { api } from './AxiosService'
 
@@ -10,6 +11,11 @@ class AccountService {
     } catch (err) {
       logger.error('HAVE YOU STARTED YOUR SERVER YET???', err)
     }
+  }
+
+  async getMyRunes() {
+    const res = await api.get("/account/runes")
+    AppState.myRunes = res.data.map(data => new MyRune(data))
   }
 }
 

@@ -29,7 +29,8 @@ const routes = [
   {
     path: '/myrunes',
     name: 'MyRunes',
-    component: loadPage('MyRunesPage')
+    component: loadPage('MyRunesPage'),
+    beforeEnter: authGuard
   },
   {
     path: '/miscellaneous',
