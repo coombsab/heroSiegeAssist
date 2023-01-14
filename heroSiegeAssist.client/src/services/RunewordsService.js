@@ -9,7 +9,11 @@ class RunewordsService {
   }
 
   async addRuneword(runewordData) {
-    
+    console.log("adding runeword", runewordData)
+    AppState.tempAbilities = []
+    AppState.tempEffects = []
+    AppState.tempItems = []
+    AppState.tempRunes = []
   }
 }
 

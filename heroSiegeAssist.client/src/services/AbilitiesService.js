@@ -8,6 +8,12 @@ class AbilitiesService {
     const res = await api.get("/api/abilities")
     AppState.abilities = res.data.map(data => new Ability(data))
   }
+
+  addAbilityToRunewordSubmission(ability) {
+    console.log("ability", ability)
+    let abilities = [ability.name]
+    AppState.tempAbilities = [...new Set([...AppState.tempAbilities, ...abilities])]
+  }
 }
 
 export const abilitiesService = new AbilitiesService()

@@ -14,6 +14,12 @@ class RunesService {
     AppState.runes.push(new Rune(res.data))
     // AppState.runes.sort((a, b) => a.name.localeCompare(b.name))
   }
+
+  addRunesToRunewordSubmission(runes) {
+    if (AppState.tempRunes.length < 6) {
+      AppState.tempRunes = [...new Set([...AppState.tempRunes, ...runes])]
+    }
+  }
 }
 
 export const runesService = new RunesService()

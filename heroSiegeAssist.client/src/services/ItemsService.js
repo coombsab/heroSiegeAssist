@@ -7,6 +7,10 @@ class ItemsService {
     const res = await api.get("api/items")
     AppState.items = res.data.map(data => new Item(data))
   }
+
+  addItemsToRunewordSubmission(items) {
+    AppState.tempItems = [...new Set([...AppState.tempItems, ...items])]
+  }
 }
 
 export const itemsService = new ItemsService()

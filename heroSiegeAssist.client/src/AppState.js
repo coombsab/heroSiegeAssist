@@ -10,5 +10,9 @@ export const AppState = reactive({
   myRunes: [],
   items: [],
   abilities: [],
-  effectsText: []
+  effectsText: [],
+  tempRunes: [],
+  tempItems: [],
+  tempAbilities: [],
+  tempEffects: []
 })
