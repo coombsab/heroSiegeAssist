@@ -34,6 +34,16 @@ const routes = [
     beforeEnter: authGuard
   },
   {
+    path: '/items',
+    name: 'Items',
+    component: loadPage('ItemsPage')
+  },
+  {
+    path: '/abilities',
+    name: 'Abilities',
+    component: loadPage('AbilitiesPage')
+  },
+  {
     path: '/miscellaneous',
     name: 'Misc',
     component: loadPage('MiscPage')

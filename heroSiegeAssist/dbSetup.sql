@@ -169,3 +169,5 @@ FROM possessedrunes pr
 JOIN accounts acc
 ON acc.id = pr.accountId
 ;
+
+DELETE FROM runewords;
