@@ -7,6 +7,7 @@
         <LandingCard :title="'MyRunes'" :background="'https://preview.redd.it/spell-rune-glyph-circle-generator-v0-s3jpu4n9ysy91.png?width=771&format=png&auto=webp&s=acfe2b1458af39d7f4af08d38c5aba96fc2b2879'" />
         <LandingCard :title="'Items'" :background="'https://media.wizards.com/2014/images/dnd/articles/DMG_MagicItems.jpg'" />
         <LandingCard :title="'Abilities'" :background="'https://pbs.twimg.com/media/EJX5l1NXsAEeqE4.jpg'" />
+        <LandingCard :title="'Hunts'" :background="'https://i.ibb.co/3rZ0dMx/hunt.png'" />
         <LandingCard :title="'Misc'" :background="'https://www.fg-a.com/wallpapers/1-circuit-red-1280.jpg'" />
       </div>
     </div>

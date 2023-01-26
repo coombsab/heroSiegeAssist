@@ -44,6 +44,11 @@ const routes = [
     component: loadPage('AbilitiesPage')
   },
   {
+    path: '/hunts',
+    name: 'Hunts',
+    component: loadPage('HuntsPage')
+  },
+  {
     path: '/miscellaneous',
     name: 'Misc',
     component: loadPage('MiscPage')
