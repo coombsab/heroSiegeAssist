@@ -2,7 +2,7 @@
   <div class="rune-card" :class="rune.possibleRunewords?.length === 0 || ! rune.possibleRunewords ? 'empty' : ''">
     <div class="rune-card-inner">
       <div class="rune-card-front">
-        <div class="card-wrapper d-flex flex-column p-3 text-center text-visible">
+        <div class="card-wrapper d-flex flex-column p-3 text-center text-visible" :class="rune.possibleRunewords?.length > 0 ? 'highlight' : ''">
           <div class="d-flex flex-column align-items-center">
             <div class="d-flex gap-1 align-items-center">
               <img :src="rune.img" :alt="rune.name">
@@ -115,6 +115,7 @@ export default {
   background-size: cover;
   background-repeat: no-repeat;
   transform: rotateY(180deg);
+  box-shadow: 0.5px 0.5px 10px 0px rgba(105, 1, 105, 0.75), -0.5px -0.5px 10px 0px rgba(105, 1, 105, 0.75);
 }
 
 .card-wrapper {
@@ -172,6 +173,10 @@ p {
   height: 100%;
   max-height: 100%;
   overflow-y: auto;
+}
+
+.highlight {
+  box-shadow: 0.5px 0.5px 10px 0px rgba(105, 1, 105, 0.75), -0.5px -0.5px 10px 0px rgba(105, 1, 105, 0.75);
 }
 
 @media (min-width: 768px) {

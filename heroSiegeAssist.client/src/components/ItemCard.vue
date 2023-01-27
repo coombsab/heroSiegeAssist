@@ -35,9 +35,8 @@ export default {
   background-color: transparent;
   height: 12rem;
   width: 8rem;
-  border: 1px solid #f1f1f1;
-  perspective: 1000px;
-  /* Remove this if you don't want the 3D effect */
+  box-shadow: 0.5px 0.5px 10px 0px rgba(0, 255, 255, 0.25), -0.5px -0.5px 10px 0px rgba(0, 255, 255, 0.25);
+  border-radius: 1rem;
 }
 
 .card-wrapper {
@@ -47,7 +46,7 @@ export default {
   background-color: rgba(0, 0, 0, 0.75);
   display: flex;
   align-items: center;
-  position: relative;
+  // position: relative;
 }
 
 img {

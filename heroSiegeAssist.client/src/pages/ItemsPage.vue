@@ -1,5 +1,5 @@
 <template>
-  <div class="items d-flex justify-content-center align-items-center">
+  <div class="items d-flex justify-content-center align-items-center gap-4">
     <ItemCard v-for="i in items" :key="i.name" :item="i" />
   </div>
   <AddButton :buttonText="'Add Item'" :modalId="'addItemModal'" />
