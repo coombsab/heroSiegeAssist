@@ -49,3 +49,15 @@ form:invalid button[type="submit"] {
   letter-spacing: 0.035rem;
 
 }
+
+.capitalize {
+  text-transform: capitalize;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.lowercase {
+  text-transform: lowercase;
+}

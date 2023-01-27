@@ -73,7 +73,7 @@
                 <div class="input-group">
                   <div class="form-floating flex-grow-1">
                     <select class="form-select bg-dark text-secondary text-lighten-3" id="floatingSelectRunewordAbility"
-                      v-model="abilityEditable.name" required>
+                      v-model="abilityEditable.name">
                       <option v-for="a in abilities" :key="a?.name" :value="a?.name">{{ a?.name }}</option>
                     </select>
                     <label for="floatingSelectAbility" class="text-secondary text-lighten-3">Ability</label>

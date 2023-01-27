@@ -27,12 +27,12 @@ import { runesService } from "../services/RunesService";
 import { accountService } from "../services/AccountService";
 
 export default {
-    setup() {
-      async function getRunewords() {
+  setup() {
+    async function getRunewords() {
       try {
         await runewordsService.getRunewords()
       }
-      catch(error) {
+      catch (error) {
         Pop.error(error.message, "[getRunewords > RunewordsPage]")
       }
     }
@@ -41,25 +41,25 @@ export default {
       try {
         await runesService.getRunes()
       }
-      catch(error) {
+      catch (error) {
         Pop.error(error.message, "[getRunes > RunewordsPage]")
       }
     }
-    
-        async function getAbilities() {
-          try {
-            await abilitiesService.getAbilities()
-          }
-          catch(error) {
-            Pop.error(error.message, "[getAbilities > RunewordsPage]")
-          }
-        }
+
+    async function getAbilities() {
+      try {
+        await abilitiesService.getAbilities()
+      }
+      catch (error) {
+        Pop.error(error.message, "[getAbilities > RunewordsPage]")
+      }
+    }
 
     async function getEffectsText() {
       try {
         await effectsService.getEffectsText()
       }
-      catch(error) {
+      catch (error) {
         Pop.error(error.message, "[getEffectsText > RunewordsPage]")
       }
     }
@@ -68,7 +68,7 @@ export default {
       try {
         await itemsService.getItems()
       }
-      catch(error) {
+      catch (error) {
         Pop.error(error.message, "[getItems > RunewordsPage]")
       }
     }
@@ -77,7 +77,7 @@ export default {
       try {
         await accountService.getMyRunes()
       }
-      catch(error) {
+      catch (error) {
         Pop.error(error.message, "[getMyRunes > RunewordsPage]")
       }
     }
@@ -91,27 +91,27 @@ export default {
       getMyRunes()
     })
 
-        return {
-          runewords: computed(() => AppState.runewords.sort((a, b) => a.name.localeCompare(b.name)))
-        };
-    },
-    components: { RunewordCard, AddModal, AddButton, AddRunewordForm }
+    return {
+      runewords: computed(() => AppState.runewords.sort((a, b) => a.name.localeCompare(b.name)))
+    };
+  },
+  components: { RunewordCard, AddModal, AddButton, AddRunewordForm }
 }
 </script>
 
 <style scoped lang="scss">
-  .runewords {
-    height: 100vh;
-    background-color: black;
-    position: relative;
-    
-    >.runewords-container {
-      overflow-y: auto;
-      height: 100%;
-      width: 100%;
-      padding-top: 5rem;
-      padding-bottom: 2.5rem;
-      align-content: flex-start;
-    }
+.runewords {
+  height: 100vh;
+  background-color: black;
+  position: relative;
+
+  >.runewords-container {
+    overflow-y: auto;
+    height: 100%;
+    width: 100%;
+    padding-top: 5rem;
+    padding-bottom: 2.5rem;
+    align-content: flex-start;
   }
+}
 </style>
