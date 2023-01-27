@@ -21,6 +21,7 @@ import AddModal from "../components/AddModal.vue";
 import AddMyRunesForm from "../components/AddMyRunesForm.vue";
 import RuneCard from "../components/RuneCard.vue";
 import { accountService } from "../services/AccountService";
+import { runesService } from "../services/RunesService";
 import Pop from "../utils/Pop";
 
 export default {
@@ -34,12 +35,22 @@ export default {
       }
     }
 
+    async function getRunes() {
+      try {
+        await runesService.getRunes()
+      }
+      catch(error) {
+        Pop.error(error.message, "[getRunes] > MyRunesPage")
+      }
+    }
+
     onMounted(() => {
       getMyRunes()
+      getRunes()
     })
 
     return {
-      myRunes: computed(() => AppState.myRunes.sort((a, b) => a.name.localeCompare(b.name)))
+      myRunes: computed(() => AppState.myRunes.sort((a, b) => a.name.localeCompare(b.name))), 
     };
   },
   components: { RuneCard, AddModal, AddButton, AddMyRunesForm }

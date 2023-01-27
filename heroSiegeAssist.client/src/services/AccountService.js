@@ -17,6 +17,11 @@ class AccountService {
     const res = await api.get("/account/runes")
     AppState.myRunes = res.data.map(data => new MyRune(data))
   }
+
+  async addToMyRunes(runeData) {
+    const res = await api.post("/account/runes", runeData)
+    AppState.myRunes.push(new MyRune(res.data))
+  }
 }
 
 export const accountService = new AccountService()

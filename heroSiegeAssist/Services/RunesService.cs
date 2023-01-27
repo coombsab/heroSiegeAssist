@@ -60,7 +60,7 @@ public class RunesService
     Rune rune = _runesRepository.GetRuneByName(name);
     if (rune == null)
     {
-      throw new Exception("Could not this rune: " + name);
+      throw new Exception("Could not find this rune: " + name);
     }
 
     return rune;
@@ -89,14 +89,19 @@ public class RunesService
 
   public MyRune AddToMyRunes(MyRune myRuneData, string accountId)
   {
+    Rune rune = this.GetRuneByName(myRuneData.Name);
+    myRuneData.Effect = rune.Effect;
+    myRuneData.Tier = rune.Tier;
+    myRuneData.DropRate = rune.DropRate;
+    myRuneData.Img = rune.Img;
     myRuneData.AccountId = accountId;
     myRuneData.Id = _runesRepository.AddToMyRunes(myRuneData);
 
-    MyRune rune = this.GetMyRuneById(myRuneData.Id);
+    MyRune myRune = this.GetMyRuneById(myRuneData.Id);
     List<Runeword> runewords = _runewordsService.GetRunewordsByRune((Rune)myRuneData);
-    rune.PossibleRunewords = runewords;
+    myRune.PossibleRunewords = runewords;
 
-    return rune;
+    return myRune;
   }
 
   public MyRune EditMyRune(MyRune myRuneData, string accountId)
