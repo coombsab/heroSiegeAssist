@@ -46,8 +46,6 @@ export default {
       possibleItemTypes: computed(() => AppState.possibleItemTypes),
       async handleSubmit() {
         try {
-          console.log("Submitting item", editable.value)
-
           await abilitiesService.addAbility(editable.value)
           editable.value = {}
         }

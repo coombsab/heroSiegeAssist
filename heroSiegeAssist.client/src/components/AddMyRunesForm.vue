@@ -38,7 +38,6 @@ export default {
       runes: computed(() => AppState.runes.sort((a, b) => a.name.localeCompare(b.name))), 
       async handleSubmit() {
         try {
-          console.log("adding my rune", editable.value)
           await accountService.addToMyRunes(editable.value)
           editable.value = {}
         }

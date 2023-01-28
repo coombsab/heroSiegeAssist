@@ -56,12 +56,6 @@ export default {
       possibleItemTypes: computed(() => AppState.possibleItemTypes),
       async handleSubmit() {
         try {
-          console.log("Submitting item", editable.value)
-          // editable.value.effect = effectEditable.value.value + " " + effectEditable.value.text
-          // await runesService.addRune(editable.value)
-          // editable.value = {}
-          // effectEditable.value = {}
-
           await itemsService.addItem(editable.value)
           editable.value = {}
         }

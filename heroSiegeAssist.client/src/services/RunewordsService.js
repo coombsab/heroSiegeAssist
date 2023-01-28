@@ -10,7 +10,6 @@ class RunewordsService {
   }
 
   async addRuneword(runewordData) {
-    // console.log("initialRunewordData", runewordData)
     AppState.tempAbilities = []
     AppState.tempEffects = []
     AppState.tempItems = []
@@ -30,11 +29,9 @@ class RunewordsService {
     runewordData.effects.forEach(effect => effects.push({ name: effect }))
     runewordData.effects = effects
 
-    // console.log("runewordData", runewordData)
 
     const res = await api.post("/api/runewords", runewordData)
     AppState.runewords.push(new Runeword(res.data))
-    console.log(res.data)
   }
 
   checkForRunewords() {
