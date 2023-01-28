@@ -8,7 +8,6 @@
 <script>
 import { computed } from 'vue'
 import { AppState } from './AppState'
-import Navbar from './components/Navbar.vue'
 
 export default {
   setup() {
@@ -16,7 +15,6 @@ export default {
       appState: computed(() => AppState)
     }
   },
-  components: { Navbar }
 }
 </script>
 <style lang="scss">
