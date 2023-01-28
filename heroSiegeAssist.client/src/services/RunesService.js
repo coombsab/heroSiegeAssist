@@ -15,14 +15,14 @@ class RunesService {
     // AppState.runes.sort((a, b) => a.name.localeCompare(b.name))
   }
 
-  addRunesToRunewordSubmission(runes) {
+  addRunesToRunewordSubmission(rune) {
     if (AppState.tempRunes.length < 6) {
-      AppState.tempRunes = [...new Set([...AppState.tempRunes, ...runes])]
+      AppState.tempRunes.push(rune)
     }
   }
 
-  removeRuneFromRunewordSubmission(rune) {
-    AppState.tempRunes = AppState.tempRunes.filter(r => r !== rune)
+  removeRuneFromRunewordSubmission(index) {
+    AppState.tempRunes.splice(index, 1)
   }
 }
 

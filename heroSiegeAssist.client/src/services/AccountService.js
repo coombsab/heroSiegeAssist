@@ -2,6 +2,7 @@ import { AppState } from '../AppState'
 import { MyRune } from "../models/MyRune"
 import { logger } from '../utils/Logger'
 import { api } from './AxiosService'
+import { runewordsService } from "./RunewordsService"
 
 class AccountService {
   async getAccount() {
@@ -16,6 +17,7 @@ class AccountService {
   async getMyRunes() {
     const res = await api.get("/account/runes")
     AppState.myRunes = res.data.map(data => new MyRune(data))
+    runewordsService.checkForRunewords()
   }
 
   async addToMyRunes(runeData) {

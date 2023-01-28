@@ -95,12 +95,12 @@
         </div>
 
         <div class="row">
-          <div class="col-6">
+          <div class="col-12">
             <form @submit.prevent="handleSubmitRunes()">
               <div class="input-group">
                 <div class="form-floating">
                   <select class="form-select bg-dark text-secondary text-lighten-3" id="floatingSelectRunewordRunes"
-                    v-model="runeEditable" multiple required>
+                    v-model="runeEditable.rune" required>
                     <option class="rune-option" v-for="r in runes" :value="r.name">{{ r.name }}</option>
                   </select>
                   <label for="floatingSelectRunewordRunes" class="text-secondary text-lighten-3">Add Rune</label>
@@ -114,9 +114,16 @@
                 runeEditable.length
               }}</p>
             </div>
-
           </div>
-          <div class="col-6">
+          <div class="col-12 mb-3">
+            <p class="m-0 text-secondary text-lighten-3 fw-1 px-1">Runes Added:</p>
+            <div class="d-flex gap-1 align-items-center justify-content-between added-item" v-for="(r, index) in tempRunes">
+              <p class="m-0 text-secondary no-select">{{ r }}</p>
+              <button type="button" @click.stop="removeRune(index)"><i
+                  class="mdi mdi-delete-circle text-secondary"></i></button>
+            </div>
+          </div>
+          <div class="col-12">
             <form @submit.prevent="handleSubmitItems()">
               <div class="input-group">
                 <div class="form-floating">
@@ -130,15 +137,7 @@
               </div>
             </form>
           </div>
-          <div class="col-6">
-            <p class="m-0 text-secondary text-lighten-3 fw-1 px-1">Runes Added:</p>
-            <div class="d-flex gap-1 align-items-center justify-content-between added-item" v-for="i in tempRunes">
-              <p class="m-0 text-secondary no-select">{{ i }}</p>
-              <button type="button" @click.stop="removeRune(i)"><i
-                  class="mdi mdi-delete-circle text-secondary"></i></button>
-            </div>
-          </div>
-          <div class="col-6">
+          <div class="col-12">
             <p class="m-0 text-secondary text-lighten-3 fw-1 px-1">Items Added:</p>
             <div class="d-flex gap-1 align-items-center justify-content-between added-item" v-for="i in tempItems">
               <p class="m-0 text-secondary no-select">{{ i }}</p>
@@ -167,7 +166,7 @@ export default {
   setup() {
     const editable = ref({});
     const effectEditable = ref({});
-    const runeEditable = ref([]);
+    const runeEditable = ref({});
     const itemEditable = ref([]);
     const abilityEditable = ref({});
 
@@ -196,7 +195,7 @@ export default {
           await runewordsService.addRuneword(editable.value);
           editable.value = {};
           effectEditable.value = {};
-          runeEditable.value = [];
+          runeEditable.value = {};
           itemEditable.value = [];
           abilityEditable.value = {};
         }
@@ -205,10 +204,10 @@ export default {
         }
       },
       handleSubmitRunes() {
-        if (this.runeEditable.length + this.tempRunes.length <= 6) {
-          runesService.addRunesToRunewordSubmission(runeEditable.value);
+        if (this.tempRunes.length <= 6) {
+          runesService.addRunesToRunewordSubmission(runeEditable.value.rune);
         } else {
-          Pop.toast(`Please select fewer runes.  ${this.tempRunes.length} runes already added plus ${this.runeEditable.length} runes selected.  Total must be less than 6.`, "warning", "center")
+          Pop.toast(`Only 6 runes can be added at one time.`, "warning", "center")
         }
       },
       handleSubmitItems() {
@@ -234,8 +233,8 @@ export default {
       removeAbility(ability) {
         abilitiesService.removeAbilityFromRunewordSubmission(ability)
       },
-      removeRune(rune) {
-        runesService.removeRuneFromRunewordSubmission(rune)
+      removeRune(index) {
+        runesService.removeRuneFromRunewordSubmission(index)
       },
       removeItem(item) {
         itemsService.removeItemFromRunewordSubmission(item)
@@ -268,7 +267,6 @@ button:hover {
 
 #floatingSelectRunewordRunes {
   border-right: none;
-  height: 15rem;
 }
 
 #floatingSelectRunewordItems {

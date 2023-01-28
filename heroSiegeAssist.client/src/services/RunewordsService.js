@@ -35,6 +35,16 @@ class RunewordsService {
     AppState.runewords.push(new Runeword(res.data))
     console.log(res.data)
   }
+
+  checkForRunewords() {
+    console.log("checking for runewords")
+    let myRunesTemp = [...AppState.myRunes]
+    let neededRunes = []
+    AppState.runewords.forEach(runeword => {
+      neededRunes = [...runeword.runes]
+      console.log(runeword.name, "needs", neededRunes)
+    })
+  }
 }
 
 export const runewordsService = new RunewordsService()

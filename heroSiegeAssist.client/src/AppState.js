@@ -17,5 +17,6 @@ export const AppState = reactive({
   tempEffects: [],
   possibleItemSlots: [ "head", "neck", "charm", "main-hand", "body", "off-hand", "hands", "waist", "finger", "pouch", "feet" ],
   possibleItemTypes: [ "helmet", "pendant", "charm", "armor", "shield", "gloves", "belt", "ring", "potion", "boots", "sword", "spear", "bow", "javelin", "gun", "lance", "dagger", "wand", "flask", "staff", "chainsaw", "axe", "flail", "mace"],
-  activeRune: null
+  activeRune: null,
+  possibleRunewords: []
 })

@@ -1,7 +1,13 @@
 <template>
   <div class="my-runes">
-    <div class="my-runes-container d-flex flex-wrap gap-4 justify-content-center">
-      <RuneCard v-for="r in myRunes" :key="r.name" :rune="r" />
+    <div class="my-runes-container">
+      <div class="d-flex flex-wrap gap-4 justify-content-center mb-3">
+        <RuneCard v-for="r in myRunes" :key="r.name" :rune="r" />
+      </div>
+      <div class="possible-runewords d-flex justify-content-center">
+        <p class="text-visible">POSSIBLE RUNEWORDS</p>
+        <!-- <RunewordCard /> -->
+      </div>
     </div>
 
     <AddButton :buttonText="'Add Rune'" :modalId="'addMyRunesModal'" />
@@ -25,12 +31,14 @@ import AddMyRunesForm from "../components/AddMyRunesForm.vue";
 import RuneCard from "../components/RuneCard.vue";
 import { accountService } from "../services/AccountService";
 import { runesService } from "../services/RunesService";
+import { runewordsService } from "../services/RunewordsService";
 import Pop from "../utils/Pop";
 
 export default {
   setup() {
     async function getMyRunes() {
       try {
+        await runewordsService.getRunewords()
         await accountService.getMyRunes()
       }
       catch(error) {
