@@ -65,8 +65,7 @@ Update
         FOREIGN KEY (accountId) REFERENCES accounts(id) ON DELETE CASCADE
     ) default charset utf8;
 
-CREATE UNIQUE INDEX rune_account
-ON possessedrunes(name,accountId);
+CREATE UNIQUE INDEX rune_account ON possessedrunes(name,accountId);
 
 CREATE TABLE
     IF NOT EXISTS effectstext (
@@ -166,8 +165,16 @@ WHERE rrw.runeId = "qi";
 
 SELECT DISTINCT acc.*
 FROM possessedrunes pr
-JOIN accounts acc
-ON acc.id = pr.accountId
-;
+    JOIN accounts acc ON acc.id = pr.accountId;
 
 DELETE FROM runewords;
+
+SELECT DISTINCT rw.name
+FROM runewords rw
+    RIGHT JOIN runerunewords rrw ON rrw.runewordId = rw.name
+WHERE rrw.runeId = "xeo";
+
+SELECT rw.name
+FROM runewords rw
+    RIGHT JOIN runerunewords rrw ON rrw.runewordId = rw.name
+WHERE rrw.runeId = "xeo";

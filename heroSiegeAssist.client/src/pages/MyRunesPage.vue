@@ -4,9 +4,9 @@
       <div class="d-flex flex-wrap gap-4 justify-content-center mb-3">
         <RuneCard v-for="r in myRunes" :key="r.name" :rune="r" />
       </div>
-      <div class="possible-runewords d-flex justify-content-center">
-        <p class="text-visible">POSSIBLE RUNEWORDS</p>
-        <!-- <RunewordCard /> -->
+      <div class="possible-runewords d-flex justify-content-center gap-4">
+        <!-- <p class="text-visible">POSSIBLE RUNEWORDS</p> -->
+        <RunewordCard v-for="r in possibleRunewords" :key="r.name" :runeword="r" />
       </div>
     </div>
 
@@ -29,6 +29,7 @@ import AddButton from "../components/AddButton.vue";
 import AddModal from "../components/AddModal.vue";
 import AddMyRunesForm from "../components/AddMyRunesForm.vue";
 import RuneCard from "../components/RuneCard.vue";
+import RunewordCard from "../components/RunewordCard.vue";
 import { accountService } from "../services/AccountService";
 import { runesService } from "../services/RunesService";
 import { runewordsService } from "../services/RunewordsService";
@@ -61,10 +62,11 @@ export default {
     })
 
     return {
-      myRunes: computed(() => AppState.myRunes.sort((a, b) => a.name.localeCompare(b.name))), 
+      myRunes: computed(() => AppState.myRunes.sort((a, b) => a.name.localeCompare(b.name))),
+      possibleRunewords: computed(() => AppState.possibleRunewords.sort((a, b) => a.name.localeCompare(b.name)))
     };
   },
-  components: { RuneCard, AddModal, AddButton, AddMyRunesForm }
+  components: { RuneCard, AddModal, AddButton, AddMyRunesForm, RunewordCard }
 }
 </script>
 

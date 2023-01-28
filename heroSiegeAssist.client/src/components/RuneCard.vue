@@ -12,9 +12,9 @@
             <img :src="'/src/assets/img/' + rune.tier + '.png'" :alt="rune.tier" class="rune-tier">
           </div>
           <div class="flex-grow-1 d-flex justify-content-center align-items-center">
-            <p>{{ rune.effect }}</p>
+            <p class="darken-text">{{ rune.effect }}</p>
           </div>
-          <div class="drop-rate">{{ convertDroprate() }}</div>
+          <div class="drop-rate darken-text">{{ convertDroprate() }}</div>
           <div class="flip-icon" v-if="rune.possibleRunewords?.length > 0"><i class="mdi mdi-orbit-variant"></i></div>
           <RuneCardOptions v-if="rune.possibleRunewords?.length === 0 && route.name === 'MyRunes'" :rune="rune" :side="'front'" />
         </div>
@@ -30,7 +30,7 @@
             <img :src="'/src/assets/img/' + rune.tier + '.png'" :alt="rune.tier" class="rune-tier">
           </div>
           <div class="possible-runewords d-flex flex-column justify-content-center">
-            <p class="m-0" v-for="r in rune.possibleRunewords" :key="r.name">{{ r.name }}</p>
+            <p class="m-0 darken-text" v-for="r in rune.possibleRunewords" :key="r.name">{{ r.name }}</p>
           </div>
           <RuneCardOptions :rune="rune" :side="'back'" v-if="route.name === 'MyRunes'" />
         </div>
@@ -144,6 +144,10 @@ img {
   // background-color: purple;
 }
 
+.darken-text {
+  color: rgb(0,185,185);
+}
+
 p {
   margin: 0;
 }
@@ -162,7 +166,6 @@ p {
   left: 50%;
   transform: translateX(-50%);
   font-size: 10px;
-  color: rgb(0, 185, 185);
 }
 
 .flip-icon {

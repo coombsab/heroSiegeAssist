@@ -33,7 +33,7 @@ public class RunewordsRepository
   public List<Runeword> GetRunewordsByRune(Rune rune)
   {
     string sql = @"
-      SELECT rw.name
+      SELECT DISTINCT rw.name
       FROM runewords rw
       RIGHT JOIN runerunewords rrw
       ON rrw.runewordId = rw.name

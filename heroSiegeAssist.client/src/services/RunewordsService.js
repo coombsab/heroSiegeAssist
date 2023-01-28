@@ -1,4 +1,5 @@
 import { AppState } from "../AppState"
+import { MyRune } from "../models/MyRune"
 import { Runeword } from "../models/Runeword"
 import { api } from "./AxiosService"
 
@@ -28,7 +29,7 @@ class RunewordsService {
     runewordData.runes = runes
     runewordData.effects.forEach(effect => effects.push({ name: effect }))
     runewordData.effects = effects
-    
+
     // console.log("runewordData", runewordData)
 
     const res = await api.post("/api/runewords", runewordData)
@@ -37,13 +38,36 @@ class RunewordsService {
   }
 
   checkForRunewords() {
-    console.log("checking for runewords")
-    let myRunesTemp = [...AppState.myRunes]
-    let neededRunes = []
+    let myRunesTemp = []
+    AppState.possibleRunewords = []
+    AppState.myRunes.forEach(r => myRunesTemp.push(new MyRune(r)))
+
+    let hasRunes = true
+
     AppState.runewords.forEach(runeword => {
-      neededRunes = [...runeword.runes]
-      console.log(runeword.name, "needs", neededRunes)
+      runeword.runes.forEach(rune => {
+        let myRune = myRunesTemp.find(r => r.name === rune.name)
+
+        if (!myRune) {
+          hasRunes = false
+        } else {
+          if (myRune.quantity >= 1) {
+            myRune.quantity--
+          } else {
+            hasRunes = false
+          }
+        }
+      })
+      if (hasRunes) {
+        AppState.possibleRunewords.push(runeword)
+      } else {
+        hasRunes = true
+      }
+      myRunesTemp = []
+      AppState.myRunes.forEach(r => myRunesTemp.push(new MyRune(r)))
+
     })
+
   }
 }
 

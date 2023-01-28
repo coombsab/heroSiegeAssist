@@ -23,12 +23,14 @@ class AccountService {
   async addToMyRunes(runeData) {
     const res = await api.post("/account/runes", runeData)
     AppState.myRunes.push(new MyRune(res.data))
+    runewordsService.checkForRunewords()
   }
 
   async deleteMyRune(runeId) {
     const res = await api.delete("/account/runes/" + runeId)
     console.log(res.data)
     AppState.myRunes = AppState.myRunes.filter(rune => rune.id !== runeId)
+    runewordsService.checkForRunewords()
   }
 
   async editMyRune(runeData) {
@@ -38,6 +40,7 @@ class AccountService {
     updatedRune.possibleRunewords = AppState.activeRune.possibleRunewords
     let index = AppState.myRunes.findIndex(rune => rune.id === updatedRune.id)
     AppState.myRunes.splice(index, 1, updatedRune)
+    runewordsService.checkForRunewords()
   }
 }
 
