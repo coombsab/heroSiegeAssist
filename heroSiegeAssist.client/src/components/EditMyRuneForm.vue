@@ -30,7 +30,6 @@ export default {
       activeRune: computed(() => AppState.activeRune),
       async handleSubmit() {
         try {
-          console.log("adding my rune", editable.value)
           await accountService.editMyRune(editable.value)
           editable.value = {}
         }

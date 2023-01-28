@@ -28,7 +28,6 @@ class AccountService {
 
   async deleteMyRune(runeId) {
     const res = await api.delete("/account/runes/" + runeId)
-    console.log(res.data)
     AppState.myRunes = AppState.myRunes.filter(rune => rune.id !== runeId)
     runewordsService.checkForRunewords()
   }
