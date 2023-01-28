@@ -28,6 +28,6 @@ export default {
 .modal-content {
   background-color: rgba(0, 0, 0, 0);
   box-shadow: 0.5px 0.5px 10px 0px rgba(0, 255, 255, 0.25), -0.5px -0.5px 10px 0px rgba(0, 255, 255, 0.25);
-  backdrop-filter: blur(2.5px);
+  backdrop-filter: blur(2px);
 }
 </style>

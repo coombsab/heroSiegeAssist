@@ -2,7 +2,7 @@
   <div class="add-item-form">
     <div class="title mb-3 px-3 d-flex justify-content-between align-items-center">
       <p class="fs-4 m-0 text-visible">Add Item</p>
-      <button type="submit" form="submitItemForm"><i class="mdi mdi-plus-outline fs-4 text-visible"></i></button>
+      <button type="submit" form="submitItemForm" data-bs-dismiss="modal"><i class="mdi mdi-plus-outline fs-4 text-visible"></i></button>
     </div>
     <form @submit.prevent="handleSubmit()" id="submitItemForm">
       <div class="container-fluid">

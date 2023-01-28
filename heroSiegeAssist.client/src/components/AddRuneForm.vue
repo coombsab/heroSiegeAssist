@@ -3,7 +3,7 @@
     <form @submit.prevent="handleSubmit()">
       <div class="title mb-3 px-3 d-flex justify-content-between align-items-center">
         <p class="fs-4 m-0 text-visible">Add Rune</p>
-        <button type="submit"><i class="mdi mdi-plus-outline fs-4 text-visible"></i></button>
+        <button type="submit" data-bs-dismiss="modal"><i class="mdi mdi-plus-outline fs-4 text-visible"></i></button>
       </div>
       <div class="form-floating mb-3">
         <input type="text" class="form-control bg-dark text-secondary text-lighten-3" id="floatingInputRuneName"

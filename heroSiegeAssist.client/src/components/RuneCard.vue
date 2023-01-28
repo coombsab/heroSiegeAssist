@@ -16,6 +16,7 @@
           </div>
           <div class="drop-rate">{{ convertDroprate() }}</div>
           <div class="flip-icon" v-if="rune.possibleRunewords?.length > 0"><i class="mdi mdi-orbit-variant"></i></div>
+          <RuneCardOptions v-if="rune.possibleRunewords?.length === 0" :rune="rune" :side="'front'" />
         </div>
       </div>
       <div class="rune-card-back">
@@ -31,6 +32,7 @@
           <div class="possible-runewords d-flex flex-column justify-content-center">
             <p class="m-0" v-for="r in rune.possibleRunewords" :key="r.name">{{ r.name }}</p>
           </div>
+          <RuneCardOptions :rune="rune" :side="'back'" />
         </div>
       </div>
     </div>
@@ -38,21 +40,25 @@
 </template>
 
 <script>
+import { useRouter } from "vue-router"
+import RuneCardOptions from "./RuneCardOptions.vue"
+
 export default {
-  props: {
-    rune: { type: Object }
-  },
-
-  setup(props) {
-
-    return {
-      convertDroprate() {
-        let leftNum = props.rune.dropRate[0]
-        let rightNum = props.rune.dropRate.substring(2)
-        return (Math.round(((leftNum / rightNum) * 100) * 10000) / 10000) + '%'
-      }
-    }
-  }
+    props: {
+        rune: { type: Object }
+    },
+    setup(props) {
+        const router = useRouter();
+        return {
+            router,
+            convertDroprate() {
+                let leftNum = props.rune.dropRate[0];
+                let rightNum = props.rune.dropRate.substring(2);
+                return (Math.round(((leftNum / rightNum) * 100) * 10000) / 10000) + "%";
+            }
+        };
+    },
+    components: { RuneCardOptions }
 }
 </script>
 

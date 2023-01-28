@@ -2,7 +2,7 @@
   <div class="add-runeword-form">
     <div class="title mb-3 px-3 d-flex justify-content-between align-items-center">
       <p class="fs-4 m-0 text-visible">Add Runeword</p>
-      <button type="submit" form="submitRunewordForm" :disabled="checkIfDisable()"><i
+      <button type="submit" form="submitRunewordForm" :disabled="checkIfDisable()" data-bs-dismiss="modal"><i
           class="mdi mdi-plus-outline fs-4 text-visible"></i></button>
     </div>
 

@@ -8,6 +8,9 @@
     <AddModal :modalId="'addMyRunesModal'">
       <AddMyRunesForm />
     </AddModal>
+    <AddModal :modalId="'editMyRuneModal'">
+      <EditMyRuneForm />
+    </AddModal>
 
   </div>
 </template>
