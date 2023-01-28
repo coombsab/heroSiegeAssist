@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <div class="home-wrapper flex-grow-1 d-flex flex-column align-items-center justify-content-center">
+    <div class="home-wrapper flex-grow-1 d-flex flex-column align-items-center justify-content-center p-5">
       <div class="card-holder d-flex gap-3 flex-wrap">
         <LandingCard :title="'Runewords'" :background="'https://steamuserimages-a.akamaihd.net/ugc/1702909686225947976/2354D9E2F7263F61043C01B62B1E5FC143416604/'" />
         <LandingCard :title="'Runes'" :background="'https://i.pinimg.com/564x/50/bb/86/50bb86315bc0c3771eefc7e97983e582.jpg'" />
