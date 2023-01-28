@@ -16,7 +16,7 @@
           </div>
           <div class="drop-rate">{{ convertDroprate() }}</div>
           <div class="flip-icon" v-if="rune.possibleRunewords?.length > 0"><i class="mdi mdi-orbit-variant"></i></div>
-          <RuneCardOptions v-if="rune.possibleRunewords?.length === 0" :rune="rune" :side="'front'" />
+          <RuneCardOptions v-if="rune.possibleRunewords?.length === 0 && route.name === 'MyRunes'" :rune="rune" :side="'front'" />
         </div>
       </div>
       <div class="rune-card-back">
@@ -32,7 +32,7 @@
           <div class="possible-runewords d-flex flex-column justify-content-center">
             <p class="m-0" v-for="r in rune.possibleRunewords" :key="r.name">{{ r.name }}</p>
           </div>
-          <RuneCardOptions :rune="rune" :side="'back'" />
+          <RuneCardOptions :rune="rune" :side="'back'" v-if="route.name === 'MyRunes'" />
         </div>
       </div>
     </div>
@@ -40,7 +40,7 @@
 </template>
 
 <script>
-import { useRouter } from "vue-router"
+import { useRoute } from "vue-router"
 import RuneCardOptions from "./RuneCardOptions.vue"
 
 export default {
@@ -48,9 +48,9 @@ export default {
         rune: { type: Object }
     },
     setup(props) {
-        const router = useRouter();
+        const route = useRoute();
         return {
-            router,
+            route,
             convertDroprate() {
                 let leftNum = props.rune.dropRate[0];
                 let rightNum = props.rune.dropRate.substring(2);
