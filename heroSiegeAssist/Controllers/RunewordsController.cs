@@ -40,6 +40,30 @@ public class RunewordsController : ControllerBase {
     }
   }
 
+  [HttpPut("{runewordName}")]
+  public ActionResult<Runeword> EditRuneword(string runewordName, [FromBody] Runeword runewordData) {
+    try {
+      runewordData.Name = runewordName;
+      Runeword runeword = _runewordsService.EditRuneword(runewordData);
+      return Ok(runeword);
+    }
+    catch(Exception e) {
+      return BadRequest(e.Message);
+    }
+  }
+
+  [HttpDelete("{runewordName}")]
+  public ActionResult<Runeword> DeleteRuneword(string runewordName) {
+    try {
+      Runeword runeword = _runewordsService.DeleteRuneword(runewordName);
+      return Ok(runeword);
+    }
+    catch(Exception e) {
+      return BadRequest(e.Message);
+    }
+  }
+
+
   // [HttpPost("Runes")]
   // public ActionResult<RuneRuneword> AddRuneToRuneword([FromBody] RuneRuneword runeRunewordData) {
   //   try {

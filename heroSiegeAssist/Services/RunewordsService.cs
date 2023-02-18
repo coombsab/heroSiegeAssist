@@ -95,4 +95,20 @@ public class RunewordsService {
   public List<Item> GetItemsByRunewordName(string name) {
     return _runewordsRepository.GetItemsByRunewordName(name);
   }
+
+  public Runeword EditRuneword(Runeword runewordData) {
+    Runeword runeword = this.GetRunewordByName(runewordData.Name);
+
+    runeword.ItemSlot = runewordData.ItemSlot ?? runeword.ItemSlot;
+    runeword.ItemType = runewordData.ItemType ?? runeword.ItemType;
+
+    _runewordsRepository.EditRuneword(runeword);
+    return runeword;
+  }
+
+  public Runeword DeleteRuneword(string runewordName) {
+    Runeword runeword = this.GetRunewordByName(runewordName);
+    _runewordsRepository.DeleteRuneword(runeword);
+    return runeword;
+  }
 }

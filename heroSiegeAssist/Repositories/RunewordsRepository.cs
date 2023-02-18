@@ -107,4 +107,43 @@ public class RunewordsRepository
 
     return _db.Query<Item>(sql, new { name }).ToList();
   }
+
+  public void EditRuneword(Runeword runewordData) {
+    string sql = @"
+      UPDATE runewords
+      SET
+        itemSlot = @ItemSlot,
+        itemType = @ItemType
+      WHERE name = @Name
+      LIMIT 1;
+    ";
+
+    int rows = _db.Execute(sql, runewordData);
+
+    if (rows < 1)
+    {
+      throw new Exception("Changes to runeword was not saved.");
+    }
+
+    if (rows > 1)
+    {
+      throw new Exception("Something went wrong with editing your runeword.  Please contact your DBA.");
+    }
+  }
+
+  public void DeleteRuneword(Runeword runeword) {
+    string sql = @"
+      DELETE FROM runewords
+      WHERE name = @Name
+      LIMIT 1;
+    ";
+
+    int rows = _db.Execute(sql, runeword);
+    if (rows < 1) {
+      throw new Exception("Changes to runeword was not saved.");
+    }
+    if (rows > 1) {
+      throw new Exception("Something went wrong with deleting your runeword.  Please contact your DBA.");
+    }
+  }
 }

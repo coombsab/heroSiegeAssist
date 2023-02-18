@@ -8,7 +8,6 @@ public class RuneRunewordsService {
     _runeRunewordsRepository = runeRunewordsRepository;
   }
 
-
   public RuneRuneword AddRuneToRuneword(RuneRuneword runeRunewordData) {
     runeRunewordData.Id = _runeRunewordsRepository.AddRuneToRuneword(runeRunewordData);
     return runeRunewordData;
