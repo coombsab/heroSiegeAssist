@@ -67,6 +67,15 @@ public class Startup
                 "http://localhost:8080", "http://localhost:8081", "https://herosiegeassist.onrender.com/"
             });
             });
+
+      options.AddPolicy("CorsProdPolicy", builder =>
+            {
+              builder
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .AllowCredentials()
+                .WithOrigins("https://herosiegeassist.onrender.com/");
+            });
     });
   }
 
@@ -100,6 +109,8 @@ public class Startup
       app.UseSwagger();
       app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Jot v1"));
       app.UseCors("CorsDevPolicy");
+    } else {
+      app.UseCors("CorsProdPolicy");
     }
 
     app.UseHttpsRedirection();
