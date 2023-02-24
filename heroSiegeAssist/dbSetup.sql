@@ -16,7 +16,7 @@ CREATE TABLE
         createdAt DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT 'Time Created',
         updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Last Update',
         itemSlot VARCHAR(255) COMMENT 'Slot item is worn in, e.g. helmet, boots, gloves',
-        itemType VARCHAR(255) COMMENT 'Type of item, e.g. weapon, armor, pendant',
+        itemType VARCHAR(255) COMMENT 'Type of item, e.g. weapon, armor, pendant'
     ) default charset utf8;
 
 CREATE TABLE
@@ -30,22 +30,6 @@ Update
         tier VARCHAR(255),
         dropRate VARCHAR(255),
         img MEDIUMTEXT
-    ) default charset utf8;
-
-CREATE TABLE
-    IF NOT EXISTS possessedrunes (
-        name VARCHAR(255) NOT NULL primary key COMMENT ' primary key ',
-        createdAt DATETIME DEFAULT CURRENT_TIMESTAMP COMMENT ' Time Created ',
-        updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT ' Last
-Update
-    ',
-        effect VARCHAR(255),
-        tier VARCHAR(255),
-        dropRate VARCHAR(255),
-        img MEDIUMTEXT,
-        quantity INT NOT NULL,
-        accountId VARCHAR(255) NOT NULL,
-        FOREIGN KEY (accountId) REFERENCES accounts(id) ON DELETE CASCADE
     ) default charset utf8;
 
 CREATE TABLE
