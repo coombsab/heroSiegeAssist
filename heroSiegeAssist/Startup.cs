@@ -62,10 +62,8 @@ public class Startup
               builder
                 .AllowAnyMethod()
                 .AllowAnyHeader()
-                .AllowCredentials()
-                .WithOrigins(new string[]{
-                  "http://localhost:8080", "http://localhost:8081", "https://herosiegeassist.onrender.com/*"
-            });
+                // .AllowCredentials()
+                .AllowAnyOrigin();
             });
 
       options.AddPolicy("CorsProdPolicy", builder =>
@@ -73,8 +71,7 @@ public class Startup
               builder
                 .AllowAnyMethod()
                 .AllowAnyHeader()
-                .AllowCredentials()
-                // .WithOrigins("https://herosiegeassist.onrender.com/*");
+                // .AllowCredentials()
                 .AllowAnyOrigin();
             });
     });
@@ -109,11 +106,8 @@ public class Startup
       app.UseDeveloperExceptionPage();
       app.UseSwagger();
       app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Jot v1"));
-      app.UseCors("CorsProdPolicy");
-    } else {
-      app.UseCors("CorsProdPolicy");
+      app.UseCors("CorsDevPolicy");
     }
-
     app.UseHttpsRedirection();
 
     app.UseDefaultFiles();
